@@ -1,0 +1,2457 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Milagres Eucarísticos por País</title>
+
+  <style>
+
+
+    /* ------------------ ESTILO GERAL ------------------ */
+body {
+    font-family: 'Merriweather', serif;
+    background-color: #fdf9f1;
+    color: #3b1f1f;
+    margin: 0;
+    padding: 0;
+    
+}
+
+   p {
+  font-size: 1.05rem; /* aumenta o tamanho */
+  line-height: 1.4;   /* melhora o espaçamento entre linhas */
+}
+      
+
+
+header {
+    background-color: #800000;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+  nav {
+    background-color: #f8e8d0;
+    padding: 10px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    position: sticky;  /* <- fixo enquanto rola a página */
+    top: 0;            /* <- distância do topo */
+    z-index: 1000;     /* <- garante que fique acima de outros elementos */
+}
+
+nav a {
+    color: #800000;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 13px;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+nav a:hover, nav a:focus, nav a.active {
+    background-color: #800000;
+    color: white;
+    transform: translateY(-2px);
+}
+
+main {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+h1 {
+    color: #ffffff;
+}
+
+h2 {
+    color: #800000;
+}
+
+blockquote {
+    font-style: italic;
+    color: #5a3e3e;
+    border-left: 4px solid #d6b587;
+    background-color: #f9f4ec;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+footer {
+    background-color: #800000;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+/* ------------------ BOTOES DE FILTRO ------------------ */
+.filtros {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.filtros button {
+    background-color: #800000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.5s, transform 0.5s;
+}
+
+.filtros button:hover {
+    background-color: #a00000;
+    transform: scale(1.05);
+}
+
+/* ------------------ BOTOES DE MILAGRE ------------------ */
+.filtros {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.filtros button.ativo {
+    background-color: #a00000;
+    color: white;
+    transform: scale(1.06);
+    transition: background 0.5s ease, transform 0.5s ease;
+}
+
+.filtros button:hover {
+    background-color: #a00000;
+    transform: scale(1.05);
+}
+
+/* ------------------ BOTOES DE MILAGRE ------------------ */
+.grupo-milagres {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease, max-height 0.5s ease;
+}
+
+.grupo-milagres.ativo {
+    opacity: 1;
+    max-height: 4000px; /* ou um valor grande suficiente */
+}
+
+.botao-milagre {
+    display: block;
+    width: 96%;
+    background-color: #f3d5b5;
+    border: 1px solid #800000;
+    color: #800000;
+    font-weight: bold;
+    padding: 10px;
+    margin: 5px 20px ;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.5s, transform 0.5s;
+}
+
+.botao-milagre:hover {
+    background-color: #f8e0c4;
+    transform: scale(1.03);
+}
+
+.conteudo-milagre {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
+    background-color: #fff8f0;
+    border: 3px solid #ddd;
+    padding: 10px 5px;
+    margin-bottom: 1px;
+    border-radius: 1px;
+}
+/* ------------------ espacamento do botao das cidades dos milagres------------------ */
+.conteudo-milagre.ativo {
+    max-height: 1900px;
+    opacity: 1;
+    padding: 15px;
+}
+
+/* ------------------ IMAGENS ------------------ */
+img {
+    width: 320px;
+    height: 360px;
+    border-radius: 10px;
+    margin-left: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+ 
+#fiechtt{
+  width: 310px;
+    height: 500px;
+}
+
+#erdingmilagree{
+  width: 310px;
+    height: 500px;
+}
+
+
+    img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 4x 9px rgba(0, 0, 0, 0.3);
+      filter: brightness(1.1) contrast(1.0) saturate(1.1);
+    }
+    
+
+
+
+
+
+   
+  #fade {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, #fffbe6, #fffaf1, #ffffff);
+    z-index: 9999;
+    opacity: 1;
+    pointer-events: none;
+    animation: fadeOut 1.2s ease forwards; /* duração do fade */
+  }
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* Fade de saída ao trocar de página */
+  body.fade-leave {
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+
+
+
+
+
+
+/* ------------------ IMAGENS DE LUDBREG ------------------ */
+/* imagens menores */
+  .galeria-ludbreg {
+  margin: 20px auto;
+  padding-right: 50px;
+  max-width: 900px; /* acompanha a largura do texto */
+}
+
+.galeria-ludbreg figure {
+  margin: 0;
+}
+
+.galeria-ludbreg img {
+  width: 80%;
+  
+  display: block;
+  border-radius: 6px;
+  border: 1px solid #d3c6b8;
+}
+
+.galeria-ludbreg figcaption {
+  font-size: 0.9rem;
+  color: #4b3a2f;
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* imagem principal */
+.imagem-principal {
+  margin-bottom: 20px;
+}
+
+.imagem-principal img {
+  padding: 12px;
+  background: #b30000;
+}
+
+/* imagens menores */
+.imagens-secundarias {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+/* celular */
+@media (max-width: 700px) {
+  .imagens-secundarias {
+    grid-template-columns: 1fr;
+  }
+}
+  </style>
+
+
+
+  
+</head>
+<body>
+
+<div id="fade"></div>
+
+
+  <header>
+    <h1>Milagres Eucarísticos e suas curiosidades</h1>
+   
+  </header>
+
+  <nav>
+    <a href="inicio.html">Início</a>
+    <a href="milagres.html">Milagres</a>
+    <a href="biografia.html">São Carlo</a>
+    <a href="oracoes.html">Orações</a>
+    <a href="virgem maria.html">Virgem Maria</a>
+    <a href="contato.html">Contato</a>
+  </nav>
+
+
+
+<main>
+  <section>
+   <h2> O que são Milagres Eucarísticos?</h2>
+   <p>Os milagres eucarísticos são manifestações sobrenaturais que confirmam a Presença Real de Jesus Cristo na Eucaristia, conforme ensinado pela Igreja Católica: Jesus está presente verdadeira, real e substancialmente no pão e no vinho consagrados. Esses milagres acontecem quando, por intervenção divina, a hóstia consagrada se transforma visivelmente em carne, o vinho se transforma em sangue, ou ocorrem eventos extraordinários como levitação, incorruptibilidade, sangramento visível ou cura inexplicável relacionada à Eucaristia. Mostrando o quão real é a frase de Cristo  “Isto é o meu corpo" (1Coríntios 11, 24).</p>
+   <blockquote>“Na Eucaristia está todo o tesouro da Igreja, porque nela está o próprio Cristo.” — São João Paulo II</blockquote>
+
+  <br> 
+
+ 
+
+ <h2> O que configura um milagre Eucarístico?</h2> 
+
+ <p>   Ao serem consagradas as espécies na Santa Missa, a substância delas (o pão e o vinho) é transformada em Corpo e Sangue de Cristo, porém ainda permanecendo com os seus acidentes, isto é, com as suas aparências de pão e vinho. Contudo, ao longo dos séculos houve diversos eventos na história da Igreja nos quais ocorreu também a transformação das aparências, a qual pôde ser vista por todos os fiéis, estando em alguns casos conservadas as espécies até hoje.</p> 
+
+ <p>A esses casos extraordinários se deu o nome de milagres eucarísticos. Embora sejam raros, são muito bem documentados. Diversas exposições trazem uma descrição geral dos casos através da história. <b> São Carlo Acutis</b>, inclusive, realizou durante a sua vida um belíssimo trabalho de mapeamento histórico e geográfico desses milagres, levantando o incrível número de 136 casos notórios, apresentados numa exposição virtual, que pode ser consultada pela internet.</p> 
+
+ <br><br> 
+
+ 
+
+ <h2>Conheça alguns milagres abaixos:</h2> 
+
+ 
+
+
+
+
+
+ </section>
+
+  
+    
+ 
+  
+   <div class="filtros">
+  <button data-pais="italia">🇮🇹 Itália</button>
+  <button data-pais="portugal">🇵🇹 Portugal</button>
+  <button data-pais="franca">🇫🇷 França</button>
+  <button data-pais="mexico">🇲🇽 México</button>
+  <button data-pais="polonia">🇵🇱 Polônia</button>
+  <button data-pais="argentina">🇦🇷 Argentina</button>
+  <button data-pais="espanha">🇪🇸 Espanha</button>
+  <button data-pais="india">🇮🇳 Índia</button>
+  <button data-pais="belgica">🇧🇪 Belgica</button>
+  <button data-pais="austria">🇦🇹 Áustria</button>
+  <button data-pais="venezuela">🇻🇪 Venezuela</button>
+  <button data-pais="colombia">🇨🇴 Colômbia</button>
+  <button data-pais="alemanha">🇩🇪 Alemanha</button>
+  <button data-pais="holanda">🇳🇱 Holanda</button>
+  <button data-pais="suica">🇳🇱 Suíça</button>
+  <button data-pais="croacia">🇭🇷 Croácia</button>
+  
+</div>
+
+ <!-- MILAGRES DA ITÁLIA -->
+  
+ <div class="grupo-milagres italia">
+  <button class="botao-milagre" onclick="toggleMilagre('lanciano')">Lanciano – Século VIII</button>
+
+  <div id="lanciano" class="conteudo-milagre">
+    <p>Durante uma Missa celebrada por um monge que duvidava da presença real de Jesus na Eucaristia, a hóstia consagrada transformou-se visivelmente em carne, e o vinho em sangue diante de todos os fiéis.</p>
+
+    <ul>
+      <li>A carne é músculo do coração humano (miocárdio)</li>
+      <li>O sangue é humano, tipo AB — o mesmo do Sudário de Turim</li>
+      <li>Não há sinais de decomposição, mesmo após mais de 1.200 anos</li>
+      <li>Não foi usado nenhum conservante</li>
+    </ul>
+
+    <p>Este milagre é reconhecido pela Igreja e permanece até hoje exposto para veneração na Igreja de São Francisco, em Lanciano. É considerado o milagre eucarístico mais antigo e mais bem documentado cientificamente.</p>
+
+    <img src="milagre de lanciano.jpg" id="lanciano-img">
+  </div>
+ </div>
+
+
+
+
+
+ <div class="grupo-milagres italia">
+  <button class="botao-milagre" onclick="toggleMilagre('bolsena')">Bolsena – 1263</button>
+
+  <div id="bolsena" class="conteudo-milagre">
+    
+
+   <p>O <strong>Milagre Eucarístico de Bolsena</strong> ocorreu na cidade de Bolsena, Itália, em 1263, e é um dos milagres eucarísticos mais conhecidos e antigos.</p>
+
+<p>O padre que celebrava a missa estava com dúvidas sobre a presença real de Jesus na Eucaristia. Quando consagrou a hóstia, ela começou a sangrar, caindo sobre o corporal (lenço litúrgico) e o altar.</p>
+
+<blockquote>
+  “A Eucaristia é sinal visível do amor de Cristo, verdadeiro alimento espiritual que nos une ao seu corpo e sangue, manifestando-se de forma extraordinária neste milagre.” 
+</blockquote>
+
+<h3>Contexto histórico</h3>
+<p>O milagre deu origem à **Festa de Corpus Christi**, instituída pelo Papa Urbano IV em 1264, um ano após o acontecimento, para celebrar a presença real de Cristo na Eucaristia.</p>
+
+<h3>Análises e registros</h3>
+<ul>
+  <li>O tecido ensanguentado da hóstia foi conservado e levado para a Catedral de Orvieto.</li>
+  <li>Relatos históricos afirmam que o sangue permaneceu preservado ao longo dos séculos.</li>
+  <li>O milagre reforçou a fé na presença real de Cristo na Eucaristia, sendo objeto de veneração contínua.</li>
+</ul>
+
+<h3>Curiosidades</h3>
+<ul>
+  <li>A cidade de Bolsena se tornou local de peregrinação e devoção eucarística.</li>
+  <li>O milagre inspirou a construção da **Basílica de Santa Cristina** e a instituição da Festa de Corpus Christi.</li>
+  <li>É lembrado até hoje na tradição católica e em exposições de milagres eucarísticos ao redor do mundo.</li>
+</ul>
+
+
+        <img src="milagre de bolsena2.jpg" id="bolsena">
+  </div>
+ </div>
+  
+
+
+
+ <div class="grupo-milagres italia">
+  <button class="botao-milagre" onclick="toggleMilagre('offida')">Offida – 1273</button>
+
+  <div id="offida" class="conteudo-milagre">
+    
+
+   <p>Durante uma missa, uma hóstia consagrada começou a sangrar, demonstrando a presença real de Cristo na Eucaristia.</p>
+
+<p>O <strong>Milagre Eucarístico de Offida</strong> ocorreu na cidade de Offida, na Itália, em 1428, e é lembrado até hoje como um dos milagres eucarísticos reconhecidos pela Igreja.</p>
+
+<p>O padre celebrava a missa quando percebeu que a hóstia havia se transformado em carne sangrenta, caindo sobre o altar e o corporal. O fenômeno foi considerado um sinal extraordinário da presença real de Jesus na Eucaristia.</p>
+
+<blockquote>
+  “Na Eucaristia, encontramos o verdadeiro Cristo, que se dá a nós em alimento espiritual, mantendo vivo o seu amor e sacrifício por todos.” 
+</blockquote>
+
+<h3>Contexto histórico</h3>
+<p>O milagre ocorreu em um período de intensa devoção eucarística na Itália, fortalecendo a fé dos fiéis locais e incentivando peregrinações à cidade de Offida.</p>
+
+<h3>Análises e registros</h3>
+<ul>
+  <li>O tecido sangrento da hóstia foi cuidadosamente preservado pela comunidade local.</li>
+  <li>Relatos afirmam que o sangue permaneceu intacto, sem sinais de decomposição natural.</li>
+  <li>O milagre reforçou a crença na presença real de Cristo na Eucaristia e inspirou a devoção eucarística na região.</li>
+</ul>
+
+<h3>Curiosidades</h3>
+<ul>
+  <li>Offida se tornou um local de peregrinação para fiéis que desejam venerar este milagre.</li>
+  <li>O milagre é lembrado em festividades e celebrações eucarísticas locais.</li>
+  <li>O acontecimento contribuiu para a tradição de preservar e venerar hóstias eucarísticas milagrosas na Itália.</li>
+</ul>
+
+
+          <img src="milagre de offida.JPG" id="offida">
+  </div>
+ </div>
+
+    
+
+   <div class="grupo-milagres italia">
+  <button class="botao-milagre" onclick="toggleMilagre('cascia')">Cascia – 1330</button>
+
+  <div id="cascia" class="conteudo-milagre">
+    
+
+   <p>O <strong>Milagre Eucarístico de Cássia</strong> aconteceu em <strong>1330</strong>, na cidade de <strong>Cássia</strong>, na Itália, e é um dos milagres eucarísticos mais venerados da tradição católica. O evento está ligado à Basílica de Santa Rita de Cássia e é lembrado como um sinal extraordinário da presença real de Jesus Cristo na Eucaristia.</p>
+
+<h3>O que aconteceu?</h3>
+<p>Naquele ano, um camponês muito doente chamou um sacerdote para lhe levar a Sagrada Comunhão. O sacerdote, contudo, pela falta de reverência e devoção, colocou a hóstia consagrada de forma inadequada entre as páginas de seu breviário para levá-la ao enfermo. Quando abriu o livro na casa do doente, ficou surpreso ao ver que a hóstia tinha se transformado em um <strong>grumo de sangue</strong> e havia manchado as páginas do breviário com as marcas do sangue.</p>
+
+<p>Assustado e arrependido, o sacerdote dirigiu-se imediatamente ao convento agostiniano para buscar orientação com o padre Simão Fidati, um religioso reconhecido por sua santidade. O padre acolheu a confissão do sacerdote, concedeu-lhe perdão e pediu para ficar com as páginas manchadas de sangue como testemunho do milagre.</p>
+
+<blockquote>
+  “O milagre mostra a reverência devida à Eucaristia e confirma a presença real de Cristo no Santíssimo Sacramento.”
+</blockquote>
+
+<h3>Veneração e reconhecimento</h3>
+<ul>
+  <li>As páginas manchadas de sangue e a relíquia da hóstia foram preservadas com grande veneração na Basílica de Santa Rita em Cássia.</li>
+  <li>O episódio foi mencionado nos <strong>Estatutos Municipais de Cássia</strong> de 1387, que ordenavam procissões com a relíquia em Corpus Christi.</li>
+  <li>Em <strong>1687</strong>, houve um ato formal de reconhecimento da relíquia, com a apresentação de um códice antigo contendo notas sobre o prodígio.</li>
+  <li>No <strong>sexto centenário</strong> do milagre (1930), um Congresso Eucarístico foi celebrado na diocese e documentos históricos foram publicados sobre o evento.</li>
+</ul>
+
+
+<p>Até hoje, a relíquia relacionada ao milagre é venerada na cidade de Cássia, atraindo fiéis e peregrinos que desejam aprofundar sua fé na <strong>Presença Real de Cristo na Eucaristia</strong>.
+   <p>Fonte: <a href="https://roddemetrio.blogspot.com/2010/06/milagre-eucaristico-de-cassia-italia.html" target="_blank">Site sobre a informação</a></p>
+
+
+   <img src="milagre de cascia.jpg" id="cascia">
+  </div>
+ </div>   
+
+
+ <div class="grupo-milagres portugal">
+  <button class="botao-milagre" onclick="toggleMilagre('santarem')">Santarem – 1247</button>
+
+  <div id="santarem" class="conteudo-milagre">
+    
+ <p>O <strong>Milagre Eucarístico de Santarém</strong> é um dos mais antigos e mais conhecidos da Igreja Católica, ocorrido em <strong>1247</strong>, na cidade de <strong>Santarém</strong>, em Portugal. É considerado, ao lado do milagre de Lanciano (Itália), um dos mais importantes da história da Igreja.</p>
+
+  <h3>O que aconteceu?</h3>
+  <p>Uma mulher, angustiada por problemas conjugais, foi aconselhada por uma feiticeira a obter uma hóstia consagrada para realizar um feitiço de “amarração”. Desesperada, a mulher foi à Missa na Igreja de Santo Estêvão e, no momento da comunhão, fingiu receber a Eucaristia, mas a escondeu em um lenço.</p>
+
+  <p>Logo após sair da igreja, a hóstia começou a <strong>sangrar misteriosamente</strong>, encharcando o lenço. Assustada, a mulher correu para casa e guardou a hóstia em um baú. Durante a noite, uma luz intensa começou a irradiar de dentro do baú, iluminando toda a casa.</p>
+
+  <blockquote>
+    “O próprio Jesus quis mostrar que está verdadeiramente presente na Eucaristia, mesmo quando profanada por mãos indignas.”
+  </blockquote>
+
+  <h3>Reação da comunidade</h3>
+  <p>Arrependida, a mulher confessou tudo a um sacerdote. A hóstia foi levada solenemente de volta para a igreja, acompanhada por autoridades e pelo povo em procissão. Desde então, o milagre passou a ser venerado publicamente.</p>
+
+  <h3>Conservação do milagre</h3>
+  <ul>
+    <li>A hóstia milagrosa foi colocada em um <strong>Relicário de cristal</strong>, onde permanece até hoje.</li>
+    <li>É possível ver <strong>traços de sangue</strong> ainda visíveis na Sagrada Partícula.</li>
+    <li>O local onde o milagre aconteceu é conhecido como <strong>Igreja do Santíssimo Milagre</strong> em Santarém.</li>
+  </ul>
+
+  <p>O milagre foi reconhecido oficialmente pela Igreja e é motivo de grande veneração em Portugal e no mundo. O evento continua a atrair peregrinos que desejam aprofundar sua fé na <strong>Presença Real de Cristo na Eucaristia</strong>.</p>
+
+  
+        <img src="santare.jpg" id="santarem">
+  </div>
+ </div>
+  
+
+
+    
+  <div class="grupo-milagres franca">
+  <button class="botao-milagre" onclick="toggleMilagre('blanot')">Blanot – 1331</button>
+
+  <div id="blanot" class="conteudo-milagre">
+    
+
+<p>O <strong>Milagre Eucarístico de Blanot</strong> ocorreu em <strong>1331</strong>, na vila de <strong>Blanot</strong> (diocese de Autun), França. :contentReference[oaicite:2]{index=2}</p>
+
+<p>Durante a Missa de Páscoa, quando o sacerdote Hugues de la Baume, vigário de Blanot, estava administrando a comunhão à senhora Jacquette d’Effour, um fragmento da hóstia caiu inadvertidamente sobre a toalha que dois acólitos seguravam. :contentReference[oaicite:5]{index=5}</p>
+
+<p>O acólito Thomas Caillot alertou o sacerdote:  
+<blockquote>“Reverendo Pai, regressa porque o Corpo de Nosso Senhor caiu da boca desta senhora sobre a toalha.”</blockquote>  
+</p>
+
+<p>Quando o sacerdote voltou, o fragmento havia desaparecido, e no seu lugar surgiu uma mancha espessa de sangue sobre a toalha. Desejando agir, ele levou a toalha para a sacristia e tentou lavá-la com água, mas a mancha não só permaneceu como se tornou mais intensa. :contentReference[oaicite:8]{index=8}</p>
+
+<p>Movido pela situação, ele então recortou a parte manchada da toalha e a colocou em reliquiário, dirigindo-se aos fiéis:  
+<blockquote>“Minha boa gente: aqui está o Preciosíssimo Sangue de Nosso Senhor Jesus Cristo, pois lavei e torci esta toalha repetidas vezes e não consegui tirar esta mancha dela.”</blockquote>  
+</p>
+
+<h3>Documentação e veneração</h3>
+<ul>
+  <li>O bispo Pierre Bertrand da diocese de Autun ordenou uma investigação canônica sobre o caso. :contentReference[oaicite:11]{index=11}</li>
+  <li>A relíquia da toalha manchada permanece preservada na vila de Blanot e é objeto de veneração anual, especialmente na Festa de Corpus Christi. :contentReference[oaicite:13]{index=13}</li>
+</ul>
+
+<h3>Curiosidades</h3>
+<ul>
+  <li>Este milagre é considerado um dos mais antigos milagres eucarísticos documentados na França. :contentReference[oaicite:14]{index=14}</li>
+  <li>Reforça a doutrina da presença real de Eucaristia — que o Corpo e Sangue de Cristo estão verdadeiramente presentes sob as espécies de pão e vinho.</li>
+</ul>
+
+<p>Fonte: site Milagres Eucarísticos – Roberto Adriano. </p>
+
+  <img src="blanoot.jpg" id="milagre_blanot" alt="Milagre Eucarístico de Blanot" class="img-decorada">
+</div>
+        
+  </div>
+ </div>
+
+
+<div class="grupo-milagres franca">
+  <button class="botao-milagre" onclick="toggleMilagre('faverney')">Faverney – 1608</button>
+
+  <div id="faverney" class="conteudo-milagre">
+    <p>O <strong>Milagre Eucarístico de Faverney</strong> ocorreu em <strong>1608</strong>, na <strong>Abadia de São Pedro</strong>, em Faverney, região da Borgonha (França). Durante a solenidade de <strong>Pentecostes</strong>, um incêndio destruiu parte do altar, mas o ostensório com a Hóstia consagrada permaneceu <em>suspenso no ar</em> por cerca de <strong>33 horas</strong>, diante de monges e fiéis.</p>
+
+    <h3>O que aconteceu?</h3>
+    <p>Na noite de Pentecostes (25 de maio de 1608), os monges beneditinos expuseram o <strong>Santíssimo Sacramento</strong> para adoração, junto de relíquias. Uma vela caiu e provocou um incêndio que consumiu corporais, toalhas e parte do altar de madeira. Milagrosamente, o <strong>ostensório elevou-se</strong> e ficou suspenso sem apoio visível por aproximadamente 33 horas, <strong>descendo suavemente</strong> ao altar na segunda-feira (26 de maio), sem qualquer dano.</p>
+
+    <blockquote>
+      “O Senhor preservou o Santíssimo Sacramento para confirmar nossa fé na Sua Presença Real.”
+    </blockquote>
+
+    <h3>Reação da comunidade</h3>
+    <p>A notícia espalhou-se rapidamente, reunindo multidões, clero e autoridades civis. Um inquérito eclesiástico ouviu numerosas testemunhas e <strong>reconheceu o milagre</strong>. O rei <strong>Henrique IV</strong> e o papa <strong>Paulo V</strong> foram informados e confirmaram a autenticidade do acontecimento.</p>
+
+    <h3>Conservação do milagre</h3>
+    <ul>
+      <li>Memória do evento preservada na <strong>igreja/abadia de Faverney</strong>, com registros históricos.</li>
+      <li>Veneração anual com <strong>procissões em Pentecostes</strong> e adoração eucarística.</li>
+      <li>Relíquias e objetos ligados ao acontecimento são guardados e apresentados aos fiéis.</li>
+    </ul>
+
+    <p>O milagre continua a inspirar a devoção eucarística, recordando a <strong>Presença Real de Cristo</strong> e o valor da adoração diante do Santíssimo.</p>
+
+    <img src="feverneyy.png" id="faverney">
+  </div>
+</div>
+
+<div class="grupo-milagres franca">
+  <button class="botao-milagre" onclick="toggleMilagre('pressac')">Pressac – 1643</button>
+
+  <div id="pressac" class="conteudo-milagre">
+    
+
+
+
+  <p>
+  O <strong>Milagre Eucarístico de Pressac</strong> ocorreu em <strong>1643</strong>, na cidade de <em>Pressac</em>, na França. 
+  Esse acontecimento é um forte testemunho da presença real de Cristo na Eucaristia, manifestada mesmo em meio à destruição causada pelo fogo.
+</p>
+
+<p>
+  O milagre aconteceu em uma <em>Quinta-feira Santa</em>. Após a celebração da Missa, o sacerdote colocou o cálice contendo a Hóstia consagrada em um repositório dentro da igreja paroquial. 
+  Algumas horas depois, um incêndio de grandes proporções atingiu o templo, destruindo quase tudo.
+</p>
+
+<p>
+  Quando o fogo cessou e os fiéis entraram no local, encontraram o cálice praticamente derretido pelo calor intenso. 
+  No entanto, de maneira inexplicável, a <strong>Hóstia consagrada permaneceu intacta</strong>, protegida por uma pequena bolha formada na base do cálice que não se fundiu.
+</p>
+
+<blockquote>
+  “Apesar da violência das chamas que destruíram a igreja, a Sagrada Hóstia permaneceu preservada, sem ser consumida pelo fogo.”
+</blockquote>
+
+<h3>Desenvolvimento histórico</h3>
+<ul>
+  <li>O vigário da paróquia, <em>Simon Sauvage</em>, apresentou o cálice derretido e a Hóstia intacta aos fiéis como sinal do acontecimento extraordinário.</li>
+  <li>No dia seguinte, <em>Sexta-feira Santa</em>, a Hóstia foi consumida reverentemente durante a liturgia.</li>
+  <li>O caso foi documentado e levado ao Bispo de Poitiers, que reconheceu oficialmente o evento.</li>
+  <li>Vitrais na Igreja de <em>São Justo</em>, em Pressac, representam até hoje as fases do milagre.</li>
+</ul>
+
+<h3>Significado espiritual</h3>
+<p>
+  O milagre de Pressac destaca verdades centrais da fé católica:
+</p>
+<ul>
+  <li><strong>A presença real de Cristo</strong> — nem mesmo o fogo foi capaz de destruir a Eucaristia, sinal de que ela não é simples pão.</li>
+  <li><strong>A proteção divina</strong> — Deus manifesta Seu poder preservando o Santíssimo Sacramento em meio à destruição.</li>
+</ul>
+
+<h3>Na exposição de Carlo Acutis</h3>
+<p>
+  O milagre de Pressac integra a <strong>Mostra Internacional dos Milagres Eucarísticos</strong>, idealizada por <strong>São Carlo Acutis</strong>. 
+  Ele é apresentado como um dos principais milagres eucarísticos ocorridos na França.
+</p>
+
+<h3>Curiosidades</h3>
+<ul>
+  <li>O cálice ficou quase totalmente destruído, restando apenas a base onde a Hóstia foi preservada.</li>
+  <li>Os vitrais históricos da igreja local servem como uma “catequese visual” sobre o milagre.</li>
+  <li>O acontecimento reforçou a devoção eucarística na região de Pressac.</li>
+</ul>
+
+<img src="pressac.jpg" id="pressac_milagre" alt="Milagre Eucarístico de Pressac (1643)">
+
+<h3>Fontes confiáveis</h3>
+<ul>
+  <li>
+    <a href="https://www.miracolieucaristici.org/pr/Liste/scheda.html?nat=francia&wh=pressac&ct=Pressac,%201643" target="_blank">
+      Mostra Internacional dos Milagres Eucarísticos – Pressac (Carlo Acutis)
+    </a>
+  </li>
+  <li>
+    <a href="https://www.therealpresence.org/eucharst/mir/english_pdf/Pressac.pdf" target="_blank">
+      The Real Presence Association – Relato histórico do milagre de Pressac (PDF)
+    </a>
+  </li>
+  
+</ul>
+        
+  </div>
+ </div>
+
+ <div class="grupo-milagres franca">
+  <button class="botao-milagre" onclick="toggleMilagre('lesulmes')">Les Ulmes – 1668</button>
+
+  <div id="lesulmes" class="conteudo-milagre">
+    
+
+
+
+ <p>
+  O <strong>Milagre Eucarístico de Les Ulmes</strong> ocorreu em <strong>1668</strong>, na pequena igreja de <em>Les Ulmes</em>, na França. 
+  É um sinal extraordinário da presença real de Cristo na Eucaristia mostrado de forma visível durante a adoração pública do Santíssimo Sacramento. 
+</p>
+
+<p>
+  No dia <strong>2 de junho de 1668</strong>, sábado da Oitava de Corpus Christi, o Santíssimo Sacramento estava exposto para adoração. 
+  Enquanto o pároco <em>Nicolas Nezan</em> incensava o ostensório e os fiéis cantavam o hino <em>Pange lingua</em>, 
+  os presentes viram <strong>no lugar da Hóstia consagrada uma imagem</strong> de um homem com cabelo castanho claro até os ombros, rosto luminoso, mãos cruzadas e vestindo uma túnica branca. 
+</p>
+
+<p>
+  Essa forma permaneceu visível por cerca de <strong>15 minutos</strong>, pois testemunhas relataram ter visto a aparência nitidamente enquanto o hino era cantado e depois também sobre o altar. 
+  Posteriormente, o pároco informou o evento ao seu bispo, que ordenou uma investigação e autorizou oficialmente o culto ao milagre. 
+</p>
+
+<blockquote>
+  “A forma luminosa de um homem apareceu no lugar da Hóstia durante a adoração, com rosto brilhante, mãos cruzadas e túnica branca, diante de muitos fiéis.” 
+</blockquote>
+
+<h3>Desenvolvimento histórico</h3>
+<ul>
+  <li>Após a visão, o pároco comunicou o ocorrido ao Bispo de Angers, <em>Henri Arnauld</em>, que imediatamente mandou investigar e publicou um relato fiel do evento. </li>
+  <li>Até o final do século XVIII, a comunidade local celebrava anualmente o aniversário do milagre. </li>
+  <li>Durante a <strong>Revolução Francesa</strong>, para evitar a profanação, a Hóstia milagrosa foi devotamente consumida pelo vigário de Puy-Notre-Dame. </li>
+  <li>Na igreja ainda pode ser vista a <strong>nicho</strong> que abrigou a Hóstia milagrosa por mais de 130 anos. </li>
+</ul>
+
+<h3>Significado espiritual</h3>
+<p>
+  Esse milagre reforça duas verdades centrais da fé católica:
+</p>
+<ul>
+  <li><strong>A presença real de Cristo</strong> — a Hóstia consagrada não é apenas pão; a aparição visível é interpretada como um sinal divino da presença de Jesus. </li>
+  <li><strong>A adoração reverente</strong> — a resposta dos fiéis e a autorização eclesiástica mostram a importância da devoção ao Santíssimo Sacramento. </li>
+</ul>
+
+<h3>Na exposição de Carlo Acutis</h3>
+<p>
+  O milagre de Les Ulmes é apresentado na <strong>Mostra Internacional dos Milagres Eucarísticos</strong>, idealizada por <strong>São Carlo Acutis</strong>, como um dos eventos significativos ocorridos na França, destacando sinais extraordinários da Eucaristia. 
+</p>
+
+<h3>Curiosidades</h3>
+<ul>
+  <li>O milagre foi testemunhado por cerca de <strong>200 fiéis</strong> que se reuniam para adoração. </li>
+  <li>O acontecimento foi registrado por dominicanos e outras obras da época, incluindo versões impresas e xilogravuras. </li>
+  <li>Após muitos anos de veneração, a memória do milagre ainda é celebrada em eventos e peregrinações locais. </li>
+</ul>
+
+<img src="les ulmes.JPG" id="les_ulmes_milagre" alt="Milagre Eucarístico de Les Ulmes (1668)">
+
+<h3>Fontes confiáveis</h3>
+<ul>
+  <li><a href="https://www.miracolieucaristici.org/pr/download/les_ulmes.pdf" target="_blank">Mostra Internacional dos Milagres Eucarísticos – Relatório do Milagre de Les Ulmes (PDF)</a></li>
+  <li><a href="https://www.therealpresence.org/eucharst/mir/english_pdf/Lesulmes.pdf" target="_blank">The Real Presence Association – Relato histórico do milagre de Les Ulmes</a></li>
+</ul>
+        
+  </div>
+ </div>
+
+ <div class="grupo-milagres franca">
+  <button class="botao-milagre" onclick="toggleMilagre('dijon')">Dijon – 1430</button>
+
+  <div id="dijon" class="conteudo-milagre">
+    
+
+
+
+ <p>
+  O <strong>Milagre Eucarístico de Dijon</strong> aconteceu em <strong>1430</strong>, em Dijon, na França. 
+  É um sinal extraordinário da presença real de Cristo na Eucaristia manifestado de forma visível e impressionante. 
+</p>
+
+<p>
+  Em 1430, uma senhora em Mônaco comprou um relicário/monstrance de segunda mão que, por descuido, ainda continha a <strong>Santa Hóstia</strong> consagrada. 
+  Ignorando a presença real de Cristo na Eucaristia, ela tentou retirar a Hóstia com uma faca — momento em que começou a fluir <strong>sangue vivo</strong> da Hóstia. 
+</p>
+
+<p>
+  O sangue secou imediatamente e deixou impresso na Hóstia a imagem do Senhor sentado sobre um trono semicircular, rodeado por alguns instrumentos da Paixão, um sinal visível e duradouro. 
+</p>
+
+<blockquote>
+  “A Hóstia começou a destilar sangue vivo que, ao secar, deixou impressa a imagem do Senhor com os símbolos da Paixão.” 
+</blockquote>
+
+<h3>Desenvolvimento histórico</h3>
+<ul>
+  <li>A mulher perturbada levou a Hóstia ao cônego <em>Anelon</em>, que a conservou com reverência. </li>
+  <li>O episódio chegou ao conhecimento do Papa <em>Eugênio IV</em>, que desejou que a Hóstia fosse entregue ao Duque Filipe da Borgonha. </li>
+  <li>O Duque, por sua vez, doou a Hóstia à cidade de Dijon, onde foi venerada por mais de <strong>350 anos</strong>. </li>
+  <li>Em fevereiro de 1794, durante a Revolução Francesa, a Basílica de São Miguel Arcanjo — onde a Hóstia estava — foi confiscada e a Hóstia milagrosa acabou sendo <strong>queimada</strong>.</li>
+</ul>
+
+<h3>Significado espiritual</h3>
+<p>
+  Esse milagre reforça duas verdades fundamentais da fé católica:
+</p>
+<ul>
+  <li><strong>A presença real</strong> — a Hóstia consagrada não era simples pão, mas o Corpo de Cristo, manifestado pelo sangue e pela imagem impressa. </li>
+  <li><strong>A reverência e devoção</strong> — o prodígio chamou atenção dos fiéis e autoridades eclesiásticas para a grandeza do sacramento. </li>
+</ul>
+
+<h3>Na exposição de Carlo Acutis</h3>
+<p>
+  O milagre de Dijon está incluído na <strong>Mostra Internacional dos Milagres Eucarísticos</strong>, idealizada por <strong>São Carlo Acutis</strong>, que apresenta eventos significativos de manifestações eucarísticas ao redor do mundo. 
+</p>
+
+<h3>Curiosidades</h3>
+<ul>
+  <li>Dijon era um importante centro da Borgonha no século XV, e o milagre contribuiu para a devoção e o culto eucarístico na região. </li>
+  <li>Vitrais na Catedral de Dijon retratam cenas deste milagre, preservando visualmente a tradição do evento. </li>
+</ul>
+
+<img src="dijon.gif" id="dijon_milagre" alt="Milagre Eucarístico de Dijon (1430)">
+
+<h3>Fontes confiáveis</h3>
+<ul>
+  <li><a href="https://www.miracolieucaristici.org/pr/download/digione.pdf" target="_blank">Mostra Internacional dos Milagres Eucarísticos – Relatório do Milagre de Dijon (PDF)</a></li>
+  <li><a href="https://www.therealpresence.org/eucharst/mir/english_pdf/digione.pdf" target="_blank">The Real Presence Association – Relato histórico do milagre de Dijon</a></li>
+  <li><a href="https://www.miracolieucaristici.org/en/map_olanda.html" target="_blank">Mostra Internacional dos Milagres Eucarísticos – Seção França (inclui Dijon)</a></li>
+</ul>
+        
+  </div>
+ </div>
+
+
+ <div class="grupo-milagres mexico">
+  <button class="botao-milagre" onclick="toggleMilagre('tixtla')">Tixtla – 2006</button>
+
+  <div id="tixtla" class="conteudo-milagre">
+    
+
+    <p>Durante uma missa, a hóstia começou a sangrar. O bispo do local, <strong>Alejo Zavala Castro</strong>, convocou uma comissão teológica de investigação para determinar se era uma farsa ou um verdadeiro milagre.</p>
+
+  <p>Em outubro de 2009, ele convidou o <strong>Dr. Ricardo Castañón Gómez</strong> para realizar pesquisas científicas com uma equipe de cientistas e verificar a natureza milagrosa da ocorrência.</p>
+
+  <h3>Análises científicas</h3>
+  <p>A pesquisa científica realizada entre outubro de 2009 e outubro de 2012 divulgou a seguinte declaração:</p>
+
+  <ul>
+    <li>A substância avermelhada analisada corresponde ao sangue no qual há hemoglobina e DNA de origem humana.</li>
+    <li>Dois estudos conduzidos por eminentes especialistas forenses mostraram que a substância se origina do interior da hóstia, excluindo a hipótese de fraude.</li>
+    <li>O tipo sanguíneo é <strong>AB</strong>, o mesmo encontrado na Hóstia de Lanciano e no Santo Sudário de Turim.</li>
+    <li>Análises microscópicas revelaram que a parte superior do sangue está coagulada desde outubro de 2006, mas camadas internas mostraram sangue fresco em fevereiro de 2010.</li>
+  </ul>
+
+  <blockquote>
+    “O evento não tem explicação natural. É um sinal visível da presença viva de Cristo na Eucaristia.”
+  </blockquote>
+
+  <h3>Curiosidades</h3>
+  <ul>
+    <li>O milagre ocorreu na cidade de <strong>Tixtla, no México</strong>, em 2006.</li>
+    <li>As análises foram conduzidas sob supervisão eclesiástica e com rigor científico internacional.</li>
+    <li>Foi reconhecido como um dos principais milagres eucarísticos da atualidade e incluído na exposição de São Carlo Acutis.</li>
+  </ul>
+
+  <p>Fonte: <a href="https://pt.aleteia.org/2020/04/23/4-milagres-eucaristicos-surpreendentes-dos-ultimos-20-anos/" target="_blank">Site sobre a informação</a></p>
+
+  <img src="tixtla.jpg" id="milagre_tixtla" alt="Milagre Eucarístico de Tixtla, México" class="img-decorada">
+
+  </div>
+ </div>
+    
+
+
+ <div class="grupo-milagres polonia">
+  <button class="botao-milagre" onclick="toggleMilagre('sokolka')">Sokolka – 2008</button>
+
+  <div id="sokolka" class="conteudo-milagre">
+     <p>O <strong>Milagre Eucarístico de Sokółka</strong> aconteceu em <strong>12 de outubro de 2008</strong>, na igreja de São Antônio, na cidade de <strong>Sokółka</strong>, nordeste da Polônia. Este milagre é considerado um dos mais impactantes do século XXI.</p>
+
+  <h3>O que aconteceu?</h3>
+  <p>Durante a distribuição da Sagrada Comunhão, uma hóstia consagrada caiu no chão. Conforme as normas da Igreja, foi recolhida e colocada em um recipiente com água, para que se dissolvesse. O recipiente foi deixado no sacrário.</p>
+
+  <p>Alguns dias depois, ao abrir o recipiente, a Irmã que cuidava da sacristia encontrou a hóstia com uma mancha avermelhada que parecia carne com sangue. O fato foi comunicado imediatamente ao pároco e ao arcebispo da região.</p>
+
+  <blockquote>
+    "Era uma parte de tecido humano vivo. E não era apenas um pedaço de carne — era tecido do coração humano em sofrimento extremo!" — conclusão científica.
+  </blockquote>
+
+  <h3>Análise científica</h3>
+  <p>Dois especialistas da Universidade Médica de Białystok analisaram a hóstia:</p>
+  <ul>
+    <li>Identificaram que o fragmento era <strong>tecido do miocárdio humano</strong>, o músculo do coração.</li>
+    <li>O tecido apresentava sinais de estar <strong>vivo</strong>, com células intactas e <strong>em sofrimento</strong>, como alguém em agonia.</li>
+    <li>Não havia indícios de que o tecido tivesse sido adicionado artificialmente à hóstia.</li>
+  </ul>
+
+  <p><strong>O caso permanece aberto pela Congregação para a Doutrina da Fé</strong>, com aprovação do bispo local para a veneração pública.</p>
+
+
+ <img src="sokolkaa.jpg" id="sokolka">
+<br><br>
+
+   <a href="https://sokolka.archibial.pl" target="_blank">
+    <button>Saiba mais sobre Sokółka (site oficial)</button>
+  </a>
+      
+  </div>
+ </div>
+  
+
+
+ <div class="grupo-milagres polonia">
+  <button class="botao-milagre" onclick="toggleMilagre('legnica')">Legnica – 2013</button>
+
+  <div id="legnica" class="conteudo-milagre">
+    <p>O <strong>Milagre Eucarístico de Legnica</strong> ocorreu em <strong>25 de dezembro de 2013</strong>, na <strong>Igreja de São Jacek (Kościół św. Jacka)</strong>, na cidade de <strong>Legnica</strong>, região da Baixa Silésia, Polônia. Durante a Santa Missa de Natal, uma <strong>hóstia consagrada caiu ao chão</strong> durante a distribuição da Comunhão. Seguindo as normas da Igreja, o sacerdote colocou a hóstia em um recipiente com água, para que se dissolvesse antes de ser depositada no sacrário.</p>
+
+    <h3>O que aconteceu?</h3>
+    <p>Após alguns dias, observou-se que a hóstia não havia se dissolvido completamente. Em vez disso, surgiu uma <strong>mancha avermelhada</strong> sobre ela. O então bispo da diocese, <strong>Dom Stefan Cichy</strong>, instituiu uma comissão para investigar o caso. Amostras do fragmento foram enviadas a dois institutos independentes de medicina forense, que concluíram que a substância apresentava características de <strong>tecido humano com fibras de músculo cardíaco em estado de agonia</strong>.</p>
+
+    <p>Em <strong>2016</strong>, o novo bispo de Legnica, <strong>Dom Zbigniew Kiernikowski</strong>, divulgou um comunicado oficial reconhecendo que o evento possui <em>“as características de um milagre eucarístico”</em> e autorizou a exposição pública da hóstia para veneração dos fiéis.</p>
+
+    <blockquote>
+      “O Senhor quis nos mostrar que está vivo na Eucaristia. O fragmento é um sinal visível do Mistério da Presença Real de Cristo no Sacramento do Altar.” — <em>Dom Zbigniew Kiernikowski, Bispo de Legnica</em>
+    </blockquote>
+
+    <h3>Reação da comunidade</h3>
+    <p>O acontecimento despertou grande comoção e renovou a fé na presença real de Cristo na Eucaristia. A hóstia milagrosa foi colocada em um <strong>relicário especial</strong> e passou a ser venerada na própria Igreja de São Jacek. Desde então, a paróquia recebe <strong>peregrinações, horas santas e testemunhos de conversão</strong> ligados ao milagre.</p>
+
+    <h3>Conservação do milagre</h3>
+    <ul>
+      <li>A hóstia permanece exposta para adoração na Igreja de São Jacek, em Legnica.</li>
+      <li>A diocese mantém um relatório oficial e acompanhamento pastoral do fenômeno.</li>
+      <li>O caso foi encaminhado à <strong>Congregação para a Doutrina da Fé</strong>, no Vaticano, para avaliação final.</li>
+    </ul>
+
+    <p>O <strong>Milagre de Legnica</strong> é um forte apelo à fé na <strong>Presença Real de Jesus na Eucaristia</strong> e um convite à adoração, à reparação e à renovação espiritual diante do Santíssimo Sacramento.</p>
+
+    <p><em>Fontes:</em></p>
+    <ul>
+      <li><a href="https://www.catholicnewsagency.com/news/33753/check-out-this-new-eucharistic-miracle-in-poland" target="_blank">Catholic News Agency – “Check out this new Eucharistic miracle in Poland” (2016)</a></li>
+      <li><a href="https://www.ncregister.com/news/polish-eucharistic-miracle-in-legnica" target="_blank">National Catholic Register – “Polish ‘Eucharistic Miracle’ in Legnica” (2016)</a></li>
+      <li><a href="https://jacek-legnica-sanktuarium.pl/en/miracles/curia-message" target="_blank">Diocese de Legnica – Comunicado Oficial (Curia Message, 2016)</a></li>
+      <li><a href="https://www.michaeljournal.org/articles/roman-catholic-church/item/another-eucharistic-miracle-in-poland" target="_blank">Michael Journal – “Another Eucharistic Miracle in Poland”</a></li>
+      <li><a href="https://perpetualeucharisticadoration.com/eucharistic-miracle-of-legnica-poland-christmas-2013" target="_blank">Perpetual Eucharistic Adoration – “Eucharistic Miracle of Legnica”</a></li>
+    </ul>
+
+    <img src="legnicaa.jpeg" id="legnica">
+    
+  </div>
+</div>
+
+
+
+ <div class="grupo-milagres polonia">
+  <button class="botao-milagre" onclick="toggleMilagre('glotowo')">Glotowo – 1290</button>
+
+  <div id="glotowo" class="conteudo-milagre">
+    
+
+   <p>O <strong>Milagre Eucarístico de Głotowo</strong> ocorreu por volta do ano de <strong>1290</strong>, na pequena aldeia de <strong>Głotowo</strong>, situada na região de <strong>Warmia</strong>, norte da <strong>Polônia</strong>. Este fato extraordinário é considerado um dos mais antigos milagres eucarísticos do país e recorda a presença real de <strong>Jesus Cristo na Eucaristia</strong>.</p>
+
+<h3>O que aconteceu?</h3>
+<p>Durante um período de conflitos e invasões, um <strong>sacerdote local</strong> escondeu um <strong>cibório contendo uma hóstia consagrada</strong> para protegê-la de possíveis profanações. A igreja da aldeia foi destruída e, com o tempo, o local onde a Eucaristia havia sido enterrada foi esquecido.</p>
+
+<p>Anos mais tarde, um <strong>camponês</strong> lavrava a terra quando seus bois <em>pararam e se ajoelharam</em> diante de um ponto luminoso. Intrigado, o homem cavou o solo e encontrou o <strong>cibório intacto</strong>, com a <strong>hóstia branca e incorrupta</strong>, irradiando uma luz intensa. O sacerdote local foi chamado e, com grande reverência, levou a Eucaristia de volta à igreja.</p>
+
+<blockquote>
+  “O Senhor quis manifestar-se para confirmar que está realmente <em>presente no Santíssimo Sacramento</em>, mesmo quando os homens O esquecem ou escondem.”
+</blockquote>
+
+<h3>Reação da comunidade</h3>
+<p>O acontecimento causou profunda <strong>comoção entre os fiéis</strong>, que passaram a venerar o local como sagrado. Em memória do milagre, foi construída uma <strong>igreja dedicada ao Santíssimo Sacramento</strong>. Em <strong>1726</strong>, o bispo <em>Krzysztof Potocki</em> mandou ampliar o templo medieval, tornando-o um centro de peregrinação.</p>
+
+<h3>Conservação do milagre</h3>
+<ul>
+  <li>O santuário de <strong>Głotowo</strong> guarda relíquias e recordações ligadas ao milagre eucarístico.</li>
+  <li>O local tornou-se ponto de <strong>peregrinação e adoração</strong> ao Santíssimo Sacramento.</li>
+  <li>Os registros históricos e testemunhos preservam a memória do acontecimento desde o século XIII.</li>
+</ul>
+
+<p>O <strong>milagre de Głotowo</strong> continua a inspirar os fiéis a adorar o Senhor presente na Eucaristia e a reconhecer que <strong>Jesus vive e permanece conosco</strong> no Santíssimo Sacramento do altar.</p>
+
+<p><em>Fontes: <a href="https://www.therealpresence.org/eucharst/mir/english_pdf/Glotowo.pdf" target="_blank">The Real Presence Eucharistic Education and Adoration Association</a>; <a href="https://eucharistjesuswithus.blogspot.com/2010/11/eucharistic-miracle-glotowo-poland-1290.html" target="_blank">Eucharist Jesus With Us</a>.</em></p>
+        
+  </div>
+ </div>
+
+
+
+ <div class="grupo-milagres polonia">
+  <button class="botao-milagre" onclick="toggleMilagre('cracovia')">Cracóvia – 1345</button>
+
+  <div id="cracovia" class="conteudo-milagre">
+    
+
+    <p>Em <strong>1345</strong>, nos arredores de Cracóvia (na região de Wawel, Polônia), ocorreu um extraordinário milagre eucarístico. Um grupo de ladrões invadiu uma pequena igreja (a Igreja de Todos os Santos próxima a Wawel) e subtraiu um ostensório (ou cibório/monstrância) que continha várias hóstias consagradas. :contentReference[oaicite:4]{index=4}</p>
+
+    <h3>O que aconteceu?</h3>
+    <p>Os ladrões, após perceberem que o ostensório não era de ouro maciço e não continha riquezas visíveis, descartaram-no com as hóstias consagradas numa zona pantanosa e lamacenta fora da vila. Curiosamente, em seguida, aquelas hóstias passaram a emitir uma luz incomum, visível no escuro, como faíscas ou clarões nas águas turvas do pântano. :contentReference[oaicite:5]{index=5}</p>
+
+    <p>O rei polonês Casimiro III, o Grande (Kazimierz III) tomou conhecimento e ordenou a construção de uma igreja dedicada ao Santíssimo Sacramento para marcar o acontecimento: a Basílica de Corpus Christi (Cracóvia) foi erguida em honra ao milagre. :contentReference[oaicite:8]{index=8}</p>
+
+    <blockquote>
+      “As hóstias consagradas revelaram-se como luz viva no pântano, clamando no silêncio da noite: «Eis que Eu permaneço convosco».”  
+    </blockquote>
+
+    <h3>Reação da comunidade e significado</h3>
+    <p>O episódio suscitou uma profunda devoção eucarística: os fiéis, o clero e o monarca entenderam-no como um sinal visível da presença real de Jesus Cristo na Eucaristia. A construção da igreja e a preservação de documentos, pinturas e testemunhos reforçaram o caráter público deste milagre. :contentReference[oaicite:10]{index=10}</p>
+
+    <h3>Conservação e memória</h3>
+    <ul>
+      <li>Documentos históricos eclesiásticos registram o depoimento de testemunhas sobre o fenômeno da luz no pântano. :contentReference[oaicite:11]{index=11}</li>
+      <li>A basílica construída por ordem do rei mantém painéis e pinturas que representam o milagre. :contentReference[oaicite:12]{index=12}</li>
+      <li>A devoção e a festa da Corpo e Sangue de Cristo assumiram nova força na região, destacando o valor da Eucaristia como mistério vivo. :contentReference[oaicite:14]{index=14}</li>
+    </ul>
+
+    <h3>Reflexão para os fiéis</h3>
+    <p>Este milagre recorda que a Eucaristia não é apenas símbolo, mas presença real de Cristo entre nós. Ele desafia a nossa fé, convoca à reverência, à adoração e ao agradecimento. Em particular, nos inspira a contemplar que, mesmo “escondido” ou “mal tratado”, o Corpo de Cristo pode manifestar-se de modo visível — e nos chama a reconhecer-Lhe o devido lugar de honra.</p>
+
+    <img src="caminho/para/imagem_cracovia.jpg" id="milagre_cracovia" alt="Milagre Eucarístico de Cracóvia – Polônia (1345)" class="img-decorada">
+  </div>
+</div>
+        
+  </div>
+ </div>
+     
+  
+     
+
+     <div class="grupo-milagres argentina">
+  <button class="botao-milagre" onclick="toggleMilagre('buenos_aires')">Buenos Aires – 1996</button>
+
+  <div id="buenos_aires" class="conteudo-milagre">
+    
+    
+
+    <p>Hóstia se transformou em carne com células do miocárdio humano. O estudo foi conduzido sob autorização do então bispo Jorge Bergoglio (Papa Francisco).</p>
+     <p>O <strong>Milagre Eucarístico de Buenos Aires</strong> é um dos milagres mais recentes e reconhecidos pela Igreja, ocorrido na Argentina em 1996, na paróquia de Santa Maria, bairro Almagro.</p>
+
+  <p>Após uma missa, uma hóstia consagrada foi esquecida em um candelabro. Quando recolhida, foi colocada em água para se dissolver, mas não se dissolveu e começou a apresentar uma mancha vermelha semelhante a carne com sangue.</p>
+
+  <p>O então arcebispo Jorge Mario Bergoglio(Papa Francisco), autorizou que o fenômeno fosse documentado e acompanhado, mantendo silêncio inicial.</p>
+
+  <blockquote>
+    “Na Eucaristia, está presente aquele mesmo Jesus que viveu, sofreu e morreu por nós, com o mesmo coração humano que ainda hoje ama e sofre conosco.”
+  </blockquote>
+
+  <h3>Análises científicas</h3>
+  <p>Em 1999, cientistas americanos, sem saber a origem da amostra, analisaram o tecido:</p>
+  <ul>
+    <li>Tecido do miocárdio humano (parte do coração responsável pela contração para bombear sangue).</li>
+    <li>Tecido estava vivo no momento da coleta, apresentando glóbulos brancos intactos.</li>
+    <li>DNA humano, sem sinais de decomposição natural.</li>
+  </ul>
+
+  <p>O resultado foi surpreendente e considerado inexplicável do ponto de vista científico, reforçando a fé na presença real de Jesus na Eucaristia.</p>
+
+  <h3>Curiosidades</h3>
+  <ul>
+    <li>O milagre foi incluído na exposição mundial dos Milagres Eucarísticos organizada por São Carlo Acutis.</li>
+    <li>Papa Francisco acompanhou o caso como arcebispo, mantendo respeito e silêncio.</li>
+  </ul>
+        <img src="milagre de Buenos Aires .jpg" id="buenos_aires">
+  </div>
+ </div>
+
+
+
+  
+     <div class="grupo-milagres espanha">
+  <button class="botao-milagre" onclick="toggleMilagre('gerona')">Gerona – 1297</button>
+
+  <div id="gerona" class="conteudo-milagre">
+    
+
+    <h3>História do Milagre</h3>
+      <p>Em 1297, durante uma missa na igreja do antigo mosteiro beneditino de São Daniel, em Gerona, um sacerdote duvidou da presença real de Cristo na Eucaristia. Ao comungar, a hóstia se transformou em carne, o que o impediu de engolir. O sacerdote, atônito, colocou a partícula transformada em carne sobre o corporal e a deixou no altar. Após a missa, uma monja encontrou o corporal com a carne ensanguentada. A relíquia foi colocada em um relicário e permaneceu na igreja até ser destruída durante a Guerra Civil Espanhola em 1936.</p>
+      <blockquote>
+        “Na Eucaristia, está presente aquele mesmo Jesus que viveu, sofreu e morreu por nós, com o mesmo coração humano que ainda hoje ama e sofre conosco.”
+      </blockquote>
+    </section>
+
+    <section>
+      <h3>Imagem do Milagre</h3>
+      <img src="https://aparicionesdejesusymaria.files.wordpress.com/2019/01/milagro-eucaristico-de-san-daniel-de-girona-espana-1297.jpg" alt="Milagre Eucarístico de Gerona">
+    </section>
+
+    <section>
+      <h2>Vídeo Explicativo</h2>
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/7myleK6ZGHA" title="Milagre Eucarístico de Gerona, Espanha (1297)" allowfullscreen></iframe>
+      </div>
+  </div>
+  </div>
+
+
+    <div class="grupo-milagres espanha">
+  <button class="botao-milagre" onclick="toggleMilagre('guadalupe')">Guadalupe – 1420</button>
+
+  <div id="guadalupe" class="conteudo-milagre">
+    
+
+  
+  <h3>História do Milagre</h3>
+  <p>
+    O <strong>Milagre Eucarístico de Guadalupe</strong> aconteceu por volta do ano de <strong>1420</strong>, no Santuário de Nossa Senhora de 
+    Guadalupe, na região de <em>Toledo</em>, na Espanha. É um testemunho profundo da <em>presença real de Cristo</em> na Eucaristia. 
+  </p>
+
+  <h3>Relato do Milagre</h3>
+  <p>
+    O sacerdote <strong>Dom Pedro Cabañuelas</strong>, um homem de grande devoção ao Santíssimo Sacramento, sofria com dúvidas sobre a real transubstanciação.   
+  </p>
+  <p>
+    No momento da consagração, ele viu descender uma nuvem densa que cobriu parcialmente o altar.   
+  </p>
+  <p>
+    Aos poucos a nuvem se dissipou, e então surgiu a visão: a Hóstia estava suspensa sobre o cálice, e dela brotavam abundantes gotas de Sangue.   
+  </p>
+  <p>
+    Essas gotas encheram rapidamente o cálice e transbordaram, derramando sobre o corporal e sobre a pala (pequeno tecido quadrado rígido usado para cobrir o cálice). 
+  </p>
+  <p>
+    Durante a visão, o sacerdote ouviu uma voz que dizia:  
+    <em>“End the Holy Mass, and for the moment reveal to no one what you saw.(Encerre a Santa Missa e, por ora, não revele a ninguém o que você viu.)”</em> 
+  </p>
+
+  <h3>Desenvolvimento Histórico</h3>
+  <ul>
+    <li>Há numerosos documentos antigos que testificam o milagre. </li>
+    <li>As relíquias do corporal ensanguentado e da pala manchado permanecem veneradas no Santuário de Guadalupe. </li>
+    <li>No Congresso Eucarístico de Toledo, em 1926, essas relíquias foram expostas para veneração pública. </li>
+    <li>O milagre se difundiu por toda a Espanha, e o Rei Don Juan II de Castela e a Rainha Maria de Aragão se tornaram grandes devotos. </li>
+  </ul>
+
+  <h3>Significado Espiritual</h3>
+  <p>
+    Esse prodígio é uma confirmação visível da <strong>transubstanciação</strong>: a transformação real do pão e do vinho no Corpo e Sangue de Cristo.  
+    Além disso, é um convite à humildade e à fé: mesmo com dúvidas, Dom Pedro orou e recebeu um sinal extraordinário de Deus.  
+  </p>
+
+  <h3>No Legado de Carlo Acutis</h3>
+  <p>
+    Este milagre faz parte da <strong>Mostra Internacional de Milagres Eucarísticos</strong>, idealizada por <strong>São Carlo Acutis</strong>, e está presente no catálogo oficial do site:<em> https://www.miracolieucaristici.org/pr/Liste/list.html</em>
+  </p>
+<img src="guadalupe.gif" id="guadalupe_img" alt="Milagre Eucarístico de Guadalupe">
+  <h3>Fontes Confiáveis</h3>
+  <ul>
+    <li>
+      <a href="https://www.miracolieucaristici.org/en/download/guadalupe.pdf" target="_blank" rel="noopener noreferrer">
+        PDF oficial do folheto (em inglês) — Miracolieucaristici.org  
+      </a>
+    </li>
+    <li>
+      <a href="https://www.miracolieucaristici.org/es/download/guadalupe.pdf" target="_blank" rel="noopener noreferrer">
+        PDF oficial do folheto (em espanhol) — Miracolieucaristici.org  
+      </a>
+    </li>
+  </ul>
+
+  </div>
+  </div>
+      
+
+
+
+
+  <div class="grupo-milagres espanha">
+  <button class="botao-milagre" onclick="toggleMilagre('zaragoza')">Zaragoza – 1427</button>
+
+  <div id="zaragoza" class="conteudo-milagre">
+    
+
+  
+   <h3>História do Milagre</h3>
+  <p>
+    O <strong>Milagre Eucarístico de Saragoça</strong> aconteceu em cerca de <strong>1427</strong>, na cidade de Saragoça (Zaragoza), Espanha.
+    Segundo os documentos históricos, esse prodígio ocorreu quando uma mulher roubou uma Hóstia consagrada, com intenções supersticiosas, desencadeando
+    um sinal sobrenatural que reforçou a fé na presença real de Cristo na Eucaristia. :contentReference[oaicite:0]{index=0}
+  </p>
+
+  <h3>Relato do Milagre</h3>
+  <p>
+    Uma mulher casada, perturbada por dificuldades em seu casamento, procurou um feiticeiro para obter ajuda. O mago instruiu-a a roubar uma Hóstia consagrada
+    da igreja — para usá-la em um filtro de amor. 
+  </p>
+  <p>
+    A mulher, que era muito supersticiosa, foi à igreja de São Miguel, confessou-se e comungou, mas com astúcia diabólica, tirou a Hóstia da boca, colocou-a num cofrinho e levou-a à casa do mago. Quando a mulher abriu a caixa, para sua surpresa,
+    encontrou dentro uma pequena criança — em vez da Hóstia — cercada por luz.   
+  </p>
+  <p>
+    Aterrorizada, ela correu para queimar a caixa com a criança dentro, segundo a orientação do feiticeiro, mas, apesar do fogo consumir completamente a caixa,
+    a criança permaneceu ilesa. 
+  </p>
+  <p>
+    Este bebê foi identificado como o Menino Jesus. Relatos da época mencionam que a pintura dessa cena ainda está presente na Capela de São Dominguito do Val,
+    na Catedral de Saragoça, e uma placa memorial descreve o milagre no local. 
+  </p>
+
+  <h3>Desenvolvimento Histórico</h3>
+  <ul>
+    <li>Existe um registro antigo na Câmara Municipal de Saragoça, com o relato detalhado do milagre. </li>
+    <li>Uma pintura histórica na Catedral da Seo de Saragoça retrata o fato miraculosamente. </li>
+    <li>Na Capela de S. Dominguito del Val, há uma placa que descreve o evento milagroso para os fiéis. </li>
+    <li>O milagre reforçou a devoção e a fé eucarística na região, sendo preservado em documentos e arte sacra ao longo dos séculos. </li>
+  </ul>
+
+  <h3>Significado Espiritual</h3>
+  <p>
+    Esse milagre tem um significado profundo: demonstra a <strong>presença real de Cristo</strong> na Eucaristia, mesmo quando atos humanos (como roubo ou superstição) tentam profanar o sacramento.
+    A manifestação de Jesus como Menino também simboliza sua humildade e encarnação, e convida os fiéis a reconhecer a santidade e o poder da Hóstia consagrada.
+  </p>
+
+  <h3>No Legado de Carlo Acutis</h3>
+  <p>
+    Esse milagre está incluído no catálogo da <strong>Mostra Internacional de Milagres Eucarísticos</strong>, idealizada por <strong>São Carlo Acutis</strong>.
+    Seu site oficial reúne relatos, artes e documentos desses prodígios para inspirar a fé.  
+  </p>
+
+  <h3>Fontes Confiáveis</h3>
+  <ul>
+    <li>
+      <a href="https://www.miracolieucaristici.org/pr/download/zaragoza.pdf" target="_blank" rel="noopener noreferrer">
+        Miracolieucaristici.org – Folheto oficial do Milagre de Saragoça (PDF)
+      </a>
+    </li>
+    <li>
+      <a href="https://www.therealpresence.org/eucharst/mir/english_pdf/Zaragoza.pdf" target="_blank" rel="noopener noreferrer">
+        The Real Presence – Relato histórico em inglês do milagre de Zaragoza
+      </a>
+    </li>
+  </ul>
+
+  </div>
+  </div>
+
+
+  <div class="grupo-milagres espanha">
+  <button class="botao-milagre" onclick="toggleMilagre('ivorra')">Ivorra – 1010</button>
+
+  <div id="ivorra" class="conteudo-milagre">
+    
+
+  
+   <h2>História do Milagre</h2>
+  <p>
+  O <strong>Milagre Eucarístico de Ivorra</strong> ocorreu por volta do ano de <strong>1010</strong>, na vila de
+  <em>Ivorra</em>, localizada na Catalunha (Espanha). Este milagre é um testemunho marcante da presença real de Cristo
+  no Santíssimo Sacramento, ocorrido em um momento de dúvida do sacerdote celebrante.
+</p>
+
+<p>
+  Durante a celebração da Santa Missa, o sacerdote <strong>Bernat Oliver</strong> começou a duvidar da presença real
+  de Jesus no vinho consagrado. No momento da consagração, o vinho transformou-se visivelmente em <strong>Sangue</strong>,
+  que se derramou do cálice sobre o corporal, o altar e chegou até o chão.
+</p>
+
+<p>
+  O acontecimento foi imediatamente comunicado às autoridades eclesiásticas. O bispo de Urgell,
+  <strong>São Ermengaudio</strong>, levou o relato ao Papa <strong>Sérgio IV</strong>, que reconheceu oficialmente
+  o milagre como um sinal extraordinário da Eucaristia.
+</p>
+
+<blockquote>
+  “O vinho consagrado transformou-se em Sangue de forma visível, confirmando a fé da Igreja na presença real
+  de Cristo na Eucaristia.”
+</blockquote>
+
+<h3>Desenvolvimento histórico</h3>
+<ul>
+  <li>
+    As relíquias do milagre, incluindo o corporal manchado com Sangue, são conservadas até hoje
+    em um relicário gótico do século XV na igreja paroquial de Ivorra.
+  </li>
+  <li>
+    O milagre contribuiu para o fortalecimento da devoção eucarística na região da Catalunha
+    ao longo dos séculos.
+  </li>
+  <li>
+    A autenticidade do acontecimento foi confirmada pela autoridade papal e preservada pela tradição da Igreja.
+  </li>
+</ul>
+
+<h3>Significado espiritual</h3>
+<p>
+  O milagre de Ivorra reforça a doutrina da <strong>transubstanciação</strong>, ensinando que o vinho consagrado
+  torna-se verdadeiramente o Sangue de Cristo. Ele convida os fiéis a confiarem plenamente no mistério
+  da Eucaristia, mesmo diante das dúvidas humanas.
+</p>
+
+<h3>Na exposição de Carlo Acutis</h3>
+<p>
+  O Milagre Eucarístico de Ivorra faz parte da <strong>Mostra Internacional dos Milagres Eucarísticos</strong>,
+  idealizada por <strong>Carlo Acutis</strong>, que utilizou a tecnologia para catalogar e divulgar
+  milagres eucarísticos reconhecidos pela Igreja em todo o mundo.
+</p>
+
+<img src="ivorra.jpg" id="ivorra_img" alt="Milagre Eucarístico de Ivorra (1010)">
+
+<h3>Fontes confiáveis</h3>
+<ul>
+  <li>
+    <a href="https://www.miracolieucaristici.org/en/download/ivorra.pdf" target="_blank" rel="noopener noreferrer">
+      Miracolieucaristici.org – Folheto oficial do Milagre Eucarístico de Ivorra (Exposição de Carlo Acutis)
+    </a>
+  </li>
+  <li>
+    <a href="https://www.miracolieucaristici.org/en/liste/scheda.html?ct=Ivorra%2C+1010&nat=spagna&wh=ivorra"
+       target="_blank" rel="noopener noreferrer">
+      Mostra Online – Página do Milagre de Ivorra no site da Exposição dos Milagres Eucarísticos
+    </a>
+  </li>
+</ul>
+      
+  </div>
+  </div>
+
+  <div class="grupo-milagres espanha">
+  <button class="botao-milagre" onclick="toggleMilagre('silla')">Silla – 1907</button>
+
+  <div id="silla" class="conteudo-milagre">
+    
+
+  
+   <h2>História do Milagre</h2>
+  <p>
+  <p>
+  O <strong>Milagre Eucarístico de Silla</strong> ocorreu em <strong>1907</strong>, na cidade de
+  <em>Silla</em>, na região de Valência (Espanha). Este acontecimento está ligado à
+  conservação extraordinária das hóstias consagradas e é reconhecido como um sinal
+  da presença real de Cristo na Eucaristia.
+</p>
+
+<p>
+  No dia <strong>25 de março de 1907</strong>, durante a celebração da Festa da Anunciação,
+  o pároco da igreja de <em>Nossa Senhora dos Anjos</em> percebeu que o tabernáculo
+  estava aberto e que o cibório contendo as hóstias consagradas havia sido roubado.
+  O fato causou grande comoção entre os fiéis.
+</p>
+
+<p>
+  Dois dias depois, as <strong>hóstias consagradas foram encontradas intactas</strong>,
+  escondidas sob uma pedra em uma horta fora da cidade. Apesar de terem permanecido
+  expostas ao ambiente, não apresentavam sinais de corrupção ou deterioração.
+  As partículas foram recolhidas com grande reverência e levadas de volta à igreja
+  em procissão solene.
+</p>
+
+<blockquote>
+  “As hóstias permaneceram incorruptas, conservando-se no mesmo estado em que foram
+  encontradas, fato considerado extraordinário pela autoridade eclesiástica.”
+</blockquote>
+
+<h3>Desenvolvimento histórico</h3>
+<ul>
+  <li>
+    As hóstias do milagre foram preservadas em um relicário próprio na igreja
+    de Nossa Senhora dos Anjos, em Silla.
+  </li>
+  <li>
+    Em <strong>1934</strong>, o Arcebispo de Valência confirmou oficialmente a autenticidade
+    do acontecimento e autorizou sua veneração.
+  </li>
+  <li>
+    Desde então, o milagre tornou-se motivo de adoração eucarística e devoção
+    para os fiéis da região.
+  </li>
+</ul>
+
+<h3>Significado espiritual</h3>
+<p>
+  O Milagre Eucarístico de Silla recorda aos fiéis o respeito e a reverência devidos
+  ao Santíssimo Sacramento. A conservação inexplicável das hóstias reforça a fé
+  na <strong>presença real de Cristo</strong> na Eucaristia e convida à adoração,
+  reparação e amor ao Sacramento do Altar.
+</p>
+
+<h3>Na exposição de Carlo Acutis</h3>
+<p>
+  Este milagre está incluído na <strong>Mostra Internacional dos Milagres Eucarísticos</strong>,
+  idealizada por <strong>Carlo Acutis</strong>, que reuniu e organizou milagres eucarísticos
+  reconhecidos pela Igreja para ajudar os fiéis a redescobrirem a centralidade
+  da Eucaristia na vida cristã.
+</p>
+
+<img src="silla.jpg" id="silla_img" alt="Milagre Eucarístico de Silla (1907)">
+
+<h3>Fontes confiáveis</h3>
+<ul>
+  <li>
+    <a href="https://www.miracolieucaristici.org/pr/Liste/list.html"
+       target="_blank" rel="noopener noreferrer">
+      Miracolieucaristici.org – Exposição Internacional dos Milagres Eucarísticos
+      idealizada por Carlo Acutis
+    </a>
+  </li>
+  <li>
+    <a href="https://youtu.be/OEkByjODSZ0?si=SdttWWZXZyZsNvcu"
+       target="_blank" rel="noopener noreferrer">
+      Video - Milagre de Silla
+    </a>
+  </li>
+  <li>
+    <a href="https://www.miracolieucaristici.org/en/liste/scheda.html?ct=Silla%2C+1907&nat=spagna"
+       target="_blank" rel="noopener noreferrer">
+      Mostra Online – Página do Milagre Eucarístico de Silla no site de Carlo Acutis
+    </a>
+  </li>
+  
+</ul>
+      
+  </div>
+  </div>
+
+
+  <div class="grupo-milagres india">
+  <button class="botao-milagre" onclick="toggleMilagre('chirattakonam')">Chirattakonam (Índia) – 2001</button>
+
+  <div id="chirattakonam" class="conteudo-milagre">
+    <h2>História do Milagre</h2>
+    <p>O <strong>Milagre Eucarístico de Chirattakonam</strong> ocorreu em <strong>28 de abril de 2001</strong>, na <strong>Igreja de Santa Maria (St. Mary’s Church)</strong>, em Chirattakonam, <strong>Trivandrum, Kerala</strong>, Índia. Durante a adoração ao Santíssimo, os fiéis testemunharam na hóstia consagrada a manifestação visível do <strong>Rosto de Jesus</strong>, coroado de espinhos.</p>
+
+    <h3>O que aconteceu?</h3>
+    <p>Na exposição do <strong>Santíssimo Sacramento</strong>, alguns presentes perceberam primeiro <em>três pontos</em> na hóstia. Em seguida, formou-se nitidamente a imagem de um <strong>Rosto humano</strong>, identificada como a face de <strong>Jesus na Paixão</strong>. O fenômeno permaneceu visível por um período significativo, gerando grande comoção e devoção.</p>
+
+    <blockquote>
+      “O Senhor nos recorda, na Eucaristia, que é realmente <em>Deus conosco</em>: sofre por nós, permanece por nós, vive por nós.”
+    </blockquote>
+
+    <h3>Reação da comunidade</h3>
+    <p>O pároco e os fiéis organizaram momentos de <strong>oração e adoração</strong>. A <strong>arquidiocese</strong> conduziu averiguações pastorais, colheu testemunhos e constatou a ausência de manipulação humana. O acontecimento foi acolhido como <strong>sinal extraordinário</strong> que fortalece a fé na Presença Real de Cristo.</p>
+
+    <h3>Conservação do milagre</h3>
+    <ul>
+      <li>O fato é recordado na <strong>paróquia de Chirattakonam</strong>, com intensa veneração eucarística.</li>
+      <li>O santuário recebe <strong>peregrinações</strong> e horas santas em ação de graças.</li>
+      <li>Relatos e registros paroquiais preservam a memória do ocorrido.</li>
+    </ul>
+
+    <p>O milagre de Chirattakonam inspira os fiéis a renovar a <strong>adoração eucarística</strong> e a contemplar o mistério do amor de Cristo que se entrega por nós na Santa Missa.</p>
+
+    <img src="indiaa.jpg" id="chirattakonam" alt="Imagem representativa do Milagre Eucarístico de Chirattakonam, Kerala (Índia), 2001">
+  </div>
+</div>
+
+
+
+
+
+  <div class="grupo-milagres belgica">
+  <button class="botao-milagre" onclick="toggleMilagre('herentals')">Herentals – 1412</button>
+   
+  <div id="herentals" class="conteudo-milagre">
+    
+
+     <h3>História do Milagre</h3>
+  <p>
+    O <strong>Milagre Eucarístico de Herentals</strong> ocorreu no ano de <strong>1412</strong>, na cidade de 
+    <em>Herentals</em>, na <strong>Bélgica</strong>, e é um dos casos apresentados na 
+    <strong>Mostra Internacional de Milagres Eucarísticos</strong>, idealizada por <strong>São Carlo Acutis</strong>. 
+    
+  </p>
+
+  <h3>Relato do Milagre</h3>
+  <p>
+    Algumas Hóstias consagradas foram <strong>furtadas</strong> de uma igreja local por um homem que roubava objetos sagrados.
+    
+  </p>
+  <p>
+    Depois de vários dias — especificamente por volta de <strong>oito dias</strong> — as Hóstias foram encontradas
+    <strong>perfeitamente intactas</strong>, apesar da chuva e das condições externas. 
+  </p>
+  
+  <p>
+    As Hóstias estavam numa <em>campo próximo a uma toca de coelhos</em>, cercadas por uma <strong>luz brilhante</strong> 
+    e dispostas em <strong>forma de cruz</strong>. 
+  </p>
+
+  <blockquote>
+  “Mesmo abandonadas e expostas às intempéries, as Hóstias consagradas permaneceram intactas e resplandecentes,
+  recordando aos fiéis que a Eucaristia é verdadeiramente a presença viva de Cristo entre nós.”
+</blockquote>
+
+  <h3>Desenvolvimento Histórico</h3>
+  <ul>
+    <li>As Hóstias encontradas foram levadas em <strong>procissão</strong> até Herentals e até a igreja de Poederlee, onde permaneceram durante muitos anos. </li>
+    <li>No local em que as Hóstias foram achadas foi construída uma pequena capela, conhecida como <strong>De Hegge</strong>, que passou a ser lugar de devoção.</li>
+    <li>Anualmente, pinturas que representam o milagre são levadas em procissão ao campo e ali celebrada uma Missa em memória do acontecimento. </li>
+  </ul>
+
+  <h3>Significado Espiritual</h3>
+  <p>
+    Este evento é apresentado como um sinal extraordinário da <strong>presença real de Cristo na Eucaristia</strong>, mostrando 
+    que as Hóstias consagradas permaneceram intactas em condições em que normalmente se deteriorariam — e mesmo assim emitiram 
+    um brilho singular, reforçando a fé dos fiéis na Eucaristia
+  </p>
+
+  <h3>No Legado de Carlo Acutis</h3>
+  <p>
+    O milagre de Herentals está incluído no catálogo oficial de milagres eucarísticos documentados e traduzidos no site de 
+    Carlo Acutis como parte da exposição mundial que reúne episódios reconhecidos historicamente. 
+  </p>
+
+  <img src="herentals.jpg" id="herentals_img" alt="Milagre Eucarístico de Herentals">
+
+  <h3>Fontes Confiáveis</h3>
+  <ul>
+    <li>
+      <a href="https://www.miracolieucaristici.org/en/download/herentals.pdf" target="_blank" rel="noopener noreferrer">
+        PDF oficial do folheto (em inglês) — miracolieucaristici.org  
+      </a>
+    </li>
+    <li>
+      <a href="https://www.miracolieucaristici.org/pr/download/herentals.pdf" target="_blank" rel="noopener noreferrer">
+        PDF oficial do folheto (em português) — miracolieucaristici.org  
+      </a>
+    </li>
+  </ul>
+
+
+        
+  </div>
+ </div>
+
+
+ <div class="grupo-milagres belgica">
+  <button class="botao-milagre" onclick="toggleMilagre('bruxelas')">Bruxelas – 1370</button>
+   
+  <div id="bruxelas" class="conteudo-milagre">
+    
+
+    <p>O <strong>Milagre Eucarístico de Bruxelas</strong> aconteceu em 1370, na Bélgica, e é um dos milagres eucarísticos mais conhecidos da Europa. O caso marcou profundamente a fé do povo belga e permanece lembrado até hoje.</p>
+
+<p>Na época, algumas hóstias consagradas foram roubadas de uma igreja em Bruxelas. Elas foram levadas a pessoas que pretendiam profaná-las e, ao serem feridas com facas, começaram a <strong>derramar sangue de forma inexplicável</strong>. Esse acontecimento foi interpretado como um sinal visível da presença real de Cristo na Eucaristia.</p>
+
+<blockquote>
+  “A Eucaristia é o coração vivo da Igreja, onde Cristo se faz presente real e verdadeiramente.”
+</blockquote>
+
+<h3>Consequências</h3>
+<p>O milagre trouxe grande comoção e rapidamente foi reconhecido pelas autoridades da época como um sinal divino. Em memória, as relíquias foram guardadas na atual <strong>Catedral de São Miguel e Santa Gudula</strong>, em Bruxelas. Todos os anos, passou a ser realizada uma procissão solene para recordar o milagre.</p>
+
+<h3>Curiosidades</h3>
+<ul>
+  <li>É um dos milagres eucarísticos incluídos na exposição mundial organizada por São Carlo Acutis.</li>
+  <li>A Igreja hoje ressalta apenas o aspecto eucarístico do milagre, sem alimentar preconceitos religiosos.</li>
+  <li>A Catedral de Bruxelas permanece até hoje como local de veneração e memória desse acontecimento.</li>
+</ul>
+
+<img src="milagre_de_bruxelas.jpg" id="bruxelas">
+        
+  </div>
+ </div>
+
+
+   <div class="grupo-milagres austria">
+  <button class="botao-milagre" onclick="toggleMilagre('seefeld')"> Seefeld – 1384</button>
+   
+  <div id="seefeld" class="conteudo-milagre">
+    
+
+<p>O <strong>Milagre Eucarístico de Seefeld</strong> aconteceu em 1384, na Áustria, e é um dos milagres eucarísticos mais conhecidos da região alpina. O acontecimento reforçou a fé do povo local e transformou Seefeld em um centro de peregrinação.</p>
+
+<p>Segundo a tradição, um nobre chamado Oswald Milser, cheio de orgulho, exigiu receber uma hóstia grande, igual à usada pelo padre na Missa. No momento da Comunhão, ao tentar consumir a Eucaristia de forma arrogante, o chão da igreja se abriu sob seus pés. Ele ficou preso e caiu de joelhos, reconhecendo seu pecado e pedindo perdão. A hóstia permaneceu intacta, confirmando o poder da presença real de Cristo na Eucaristia.</p>
+
+<blockquote>
+  “Quem se aproxima da Eucaristia deve fazê-lo com humildade e fé, pois nela está o próprio Cristo vivo.”
+</blockquote>
+
+<h3>Consequências</h3>
+<p>O milagre impressionou profundamente a comunidade local. Em memória, foi construída a <strong>Igreja da Santíssima Trindade</strong>, que se tornou local de peregrinação. Até hoje, Seefeld é conhecido por esse acontecimento e recebe fiéis que desejam venerar o lugar do milagre.</p>
+
+<h3>Curiosidades</h3>
+<ul>
+  <li>O milagre é lembrado todos os anos com celebrações solenes em Seefeld.</li>
+  <li>A hóstia milagrosa foi preservada como sinal da presença real de Cristo.</li>
+  <li>Também foi incluído na exposição mundial dos Milagres Eucarísticos organizada por São Carlo Acutis.</li>
+</ul>
+
+
+
+
+<img src="seelfed.jpg" id="seefeld">
+        
+  </div>
+ </div>
+
+
+ <div class="grupo-milagres austria">
+  <button class="botao-milagre" onclick="toggleMilagre('fiecht')"> Fiecht – 1310</button>
+   
+  <div id="fiecht" class="conteudo-milagre">
+    
+
+<p>O <strong>Milagre Eucarístico de Fiecht</strong> ocorreu no século XIV, na Áustria, no antigo mosteiro cisterciense de Fiecht, localizado na região do Tirol. Esse acontecimento tornou-se um dos mais importantes milagres eucarísticos da região, contribuindo para o fortalecimento da fé católica e da devoção à Santíssima Eucaristia entre monges, sacerdotes e fiéis leigos.</p>
+
+<p>Segundo a tradição, durante a celebração da Santa Missa, um sacerdote que atravessava um período de crise espiritual começou a nutrir dúvidas interiores sobre a presença real de Cristo na Eucaristia. Imediatamente depois da consagração o vinho se transformou em Sangue e começou a borbulhar e a sair do Cálice. Em 1480, 170 anos depois, o Santo Sangue ainda estava “fresco como se tivesse saído hoje de uma ferida”, escrevia um cronista da época. O Sangue continua intacto e está guardado num Relicário no Mosteiro de São Georgenberg.</p>
+
+<p>O Abade, os monges, que estavam no coro, e os numerosos peregrinos que participavam da missa, se aproximaram do Altar e viram o que tinha acontecido. O sacerdote assustado, não conseguiu beber todo o Santo Sangue, assim o Abade colocou o que restou num recipiente perto do purificador que secava o Cálice dentro do Tabernáculo do Altar Maior.</p>
+
+<blockquote>
+  “A Eucaristia é o maior tesouro da Igreja, pois nela Cristo se entrega totalmente por amor.”
+</blockquote>
+
+<h3>Consequências</h3>
+<p>O milagre teve grande repercussão espiritual na comunidade local e além dela. O Mosteiro de Fiecht tornou-se um importante centro de peregrinação, atraindo fiéis que desejavam aprofundar sua fé na presença real de Cristo na Eucaristia. A devoção eucarística se intensificou, e o acontecimento passou a ser lembrado como um chamado à humildade, à reverência e à confiança no mistério da fé.</p>
+
+<p>Ao longo dos séculos, o Milagre de Fiecht foi preservado na memória da Igreja como um sinal concreto da misericórdia divina, que se manifesta mesmo diante das fraquezas humanas, convidando todos à conversão e à adoração sincera.</p>
+
+<h3>Curiosidades</h3>
+<ul>
+  <li>O milagre aconteceu em um mosteiro da Ordem Cisterciense, conhecido pela vida austera, oração constante e profundo amor à liturgia.</li>
+  <li>O episódio é frequentemente citado em estudos sobre milagres eucarísticos ocorridos na Europa medieval.</li>
+  <li>O Milagre Eucarístico de Fiecht integra a exposição internacional dos Milagres Eucarísticos organizada por São Carlo Acutis.</li>
+  <li>Até hoje, o local é lembrado como um símbolo de fé, penitência e adoração eucarística.</li>
+</ul>
+
+
+
+
+
+<img src="milagre fiecht.JPG" id="fiechtt">
+        
+  </div>
+ </div>
+
+ <div class="grupo-milagres venezuela">
+  <button class="botao-milagre" onclick="toggleMilagre('betania')"> Betânia – 1991</button>
+   
+  <div id="betania" class="conteudo-milagre">
+    <p>Durante a celebração da Missa da Imaculada Conceição, em 8 de dezembro de 1991, na Fazenda Betânia, em Cúa – Venezuela, uma hóstia consagrada começou a exsudar um líquido vermelho semelhante a sangue. O fato ocorreu diante do padre Otty Ossa Aristizábal e de vários fiéis presentes.</p>
+
+<p>O <strong>Milagre Eucarístico de Betânia</strong> é um dos mais impressionantes reconhecidos pela Igreja, e a hóstia permanece até hoje preservada e exposta para veneração no convento das Irmãs Agostinianas Recoletas do Coração de Jesus, em Los Teques.</p>
+
+<p>O fenômeno ganhou notoriedade porque a hóstia, além de apresentar sangue, foi vista pulsando como um coração vivo, testemunho que marcou profundamente os fiéis que presenciaram o acontecimento.</p>
+
+<blockquote>
+  “Na Eucaristia, está presente aquele mesmo Jesus que se oferece vivo por nós, com um coração que pulsa de amor pela humanidade.”
+</blockquote>
+
+<h3>Análises científicas</h3>
+<p>Estudos realizados posteriormente confirmaram que se tratava de <strong>sangue humano</strong>. Entre os resultados apontados:</p>
+<ul>
+  <li>Sangue humano verdadeiro, não proveniente do sacerdote celebrante.</li>
+  <li>Manutenção inexplicável da integridade da hóstia com o passar do tempo.</li>
+  <li>Registro em vídeo (1998) mostrando a hóstia pulsando como um coração.</li>
+</ul>
+
+<p>Os resultados foram considerados cientificamente inexplicáveis, reforçando a fé dos católicos na presença real de Jesus na Eucaristia.</p>
+
+<h3>Curiosidades</h3>
+<ul>
+  <li>Este milagre é amplamente venerado e visitado por peregrinos na Venezuela.</li>
+  <li>Foi incluído na exposição mundial dos Milagres Eucarísticos organizada por São Carlo Acutis.</li>
+  <li>É considerado um dos sinais eucarísticos mais marcantes do continente americano.</li>
+</ul>
+
+        <img src="milagre_venezuela.png" id="betania">
+  </div>
+ </div>
+
+
+  <div class="grupo-milagres colombia">
+  <button class="botao-milagre" onclick="toggleMilagre('tumaco')"> Tumaco – 1906</button>
+   
+  <div id="tumaco" class="conteudo-milagre">
+    
+
+    <h3>História do Milagre</h3>
+  <p>
+    O <strong>Milagre Eucarístico de Tumaco</strong> ocorreu em <strong>31 de janeiro de 1906</strong>, na pequena ilha de 
+    <em>Tumaco</em>, localizada na costa do Oceano Pacífico, na <strong>Colômbia</strong>. Este acontecimento é lembrado 
+    como um momento extraordinário de fé da população e está documentado no catálogo de milagres eucarísticos de Carlo Acutis. 
+  </p>
+
+  <h3>Relato do Milagre</h3>
+  <p>
+    Na manhã daquele dia, um forte <strong>terremoto submarino</strong> sacudiu a região por cerca de dez minutos, gerando um 
+    enorme <strong>tsunami</strong> que avançava rapidamente em direção à ilha e ameaçava inundar e destruir Tumaco. 
+  </p>
+  <p>
+    Assustados, os habitantes correram para a igreja e imploraram ao pároco, <strong>Padre Gerardo Larrondo</strong>, e ao seu 
+    assistente, <strong>Padre Julián</strong>, que saíssem em procissão com o <strong>Santíssimo Sacramento</strong> para implorar a 
+    Deus proteção contra a onda que se aproximava. 
+  </p>
+  <p>
+    O padre consumiu todas as hóstias consagradas, deixando apenas a <strong>Magna Hóstia</strong>, que foi colocada na 
+    custódia (ostensório). A multidão seguiu em procissão até a beira-mar, onde o padre ergueu a Hóstia consagrada e, com 
+    grande fé, traçou o <strong>sinal da cruz</strong> sobre a imensa parede de água. 
+  </p>
+
+  <h3>Milagre e Reação</h3>
+  <p>
+    Para espanto de todos, a gigantesca onda que ameaçava engolir a ilha <strong>subitamente parou e retrocedeu</strong>, 
+    e o mar retornou ao seu estado normal — permitindo que a população fosse salva da destruição. Muitas pessoas ali 
+    presentes exclamaram: “<em>¡Milagro! ¡Milagro!</em>” (Milagre! Milagre!). 
+  </p>
+
+  <h3>Desenvolvimento Histórico</h3>
+  <ul>
+    <li>O episódio ficou conhecido localmente como o “<strong>milagre da onda</strong>” e é comemorado todos os anos em 
+        Tumaco com procissões, adoração e ações de graças. </li>
+    <li>O milagre é lembrado de forma especial na comunidade como um sinal de fé e da presença de Deus no Santíssimo 
+        Sacramento. </li>
+  </ul>
+
+  <h3>Significado Espiritual</h3>
+  <p>
+    Este acontecimento é interpretado pelos fiéis como uma <strong>intervenção divina</strong> em resposta à fé coletiva 
+    da população, através da presença real de Cristo na Eucaristia. A parada do tsunami diante da Hóstia consagrada reforça 
+    a confiança dos católicos na proteção de Deus em meio às maiores tribulações. 
+  </p>
+
+  <h3>No Legado de Carlo Acutis</h3>
+  <p>
+    O milagre de Tumaco faz parte da <strong>Mostra Internacional de Milagres Eucarísticos</strong>, organizada por 
+    <strong>São Carlo Acutis</strong>, e está incluído no catálogo oficial de milagres documentados no site de milagres eucarísticos. 
+  </p>
+
+  <img src="tumaco.jpg" id="tumaco_img" alt="Milagre Eucarístico de Tumaco">
+
+  <h3>Fontes Confiáveis</h3>
+  <ul>
+    <li>
+      <a href="https://www.miracolieucaristici.org/en/download/tumaco.pdf" target="_blank" rel="noopener noreferrer">
+        PDF oficial do folheto — Miracolieucaristici.org  
+      </a>
+    </li>
+    <li>
+      <a href="https://www.miracolieucaristici.org/pr/download/tumaco.pdf" target="_blank" rel="noopener noreferrer">
+        PDF oficial do folheto em português — Miracolieucaristici.org  
+      </a>
+    </li>
+  </ul>
+
+        
+  </div>
+ </div>
+
+
+  <div class="grupo-milagres alemanha">
+  <button class="botao-milagre" onclick="toggleMilagre('regensburg')"> Regensburg – 1255</button>
+    
+  <div id="regensburg" class="conteudo-milagre">
+    
+
+     <p>O Milagre Eucarístico de Regensburg ocorreu em <strong>25 de março de 1255</strong>, na cidade de Regensburg (Ratisbona), Alemanha. Durante a Missa, um sacerdote começou a duvidar da presença real de Cristo na Eucaristia.</p>
+
+    <p>Quando ele elevou a Hóstia, um <strong>crucifixo de madeira acima do altar se moveu</strong>, estendeu os braços e tomou o cálice das mãos do sacerdote, mostrando a Hóstia consagrada para todos os fiéis presentes.</p>
+
+    <p>O crucifixo milagroso é preservado até hoje, e uma procissão anual acontece em <strong>14 de setembro</strong> em honra ao milagre. Este evento reforçou a fé e a devoção à Eucaristia na Alemanha medieval.</p>
+  </div>
+ </div>
+
+
+ <div class="grupo-milagres alemanha">
+  <button class="botao-milagre" onclick="toggleMilagre('erding')"> Erding – 1417</button>
+    
+  <div id="erding" class="conteudo-milagre">
+    
+
+  <p>
+  O <strong>Milagre Eucarístico de Erding</strong> aconteceu em <strong>1417</strong>, na cidade de <em>Erding</em>, no sul da Alemanha. 
+  Esse evento é considerado um sinal visível da presença real de Cristo na Eucaristia e da reverência que se deve ter ao Santíssimo Sacramento. 
+</p>
+
+<p>
+  Na <strong>Quinta-feira Santa de 1417</strong>, um camponês pobre, ignorante sobre o significado profundo da Eucaristia, procurou levar para casa a Hóstia consagrada depois de recebê-la na Missa, acreditando equivocadamente que isso poderia lhe trazer prosperidade. 
+  No caminho, a Hóstia escapou de suas mãos e <strong>voou pelo ar</strong>, desaparecendo da sua vista. 
+</p>
+
+<p>
+  O homem, cheio de medo e arrependimento, correu para avisar o sacerdote. 
+  Quando o sacerdote chegou ao local onde a Hóstia havia sumido, encontrou-na repousando sobre um pequeno monte de terra, emanando uma <strong>luz brilhante</strong>. 
+  Ao tentar recolhê-la, a Hóstia mais uma vez se levantou no ar. Tanto ele quanto o bispo foram testemunhas desse fenômeno. 
+</p>
+
+<blockquote>
+  “A Hóstia consagrada escapou das mãos, voou pelo ar e só pôde ser recuperada depois da intervenção do bispo, tornando-se objeto de veneração.” 
+</blockquote>
+
+<h3>Desenvolvimento histórico</h3>
+<ul>
+  <li>Após o episódio, o bispo ordenou que se construísse uma pequena capela no local onde a Hóstia havia sido encontrada. </li>
+  <li>A devoção ao Milagre cresceu, e curas e acontecimentos extraordinários começaram a ser atribuídos à veneração da Hóstia consagrada. </li>
+  <li>Em 1677, um novo e maior santuário em estilo barroco, dedicado ao <em>Preciosíssimo Sangue</em>, foi abençoado pelo bispo Kaspar Kunner de Freising para acolher os peregrinos. </li>
+  <li>O santuário continuou sendo centro de peregrinação por séculos, preservando viva a memória do milagre. </li>
+</ul>
+
+<h3>Significado espiritual</h3>
+<p>
+  Esse milagre destaca verdades profundas da fé católica:
+</p>
+<ul>
+  <li><strong>A presença real de Cristo</strong> — a Eucaristia não é um mero símbolo, mas o Corpo de Cristo presente de forma real e sagrada. </li>
+  <li><strong>A reverência e o respeito</strong> — o episódio lembra que o Santíssimo Sacramento deve ser tratado com a maior reverência e cuidado. </li>
+</ul>
+
+<h3>Na exposição de Carlo Acutis</h3>
+<p>
+  O Milagre de Erding está incluído na <strong>Mostra Internacional dos Milagres Eucarísticos</strong>, idealizada por <strong>São Carlo Acutis</strong>, que apresenta eventos significativos ocorridos ao longo da história e que reforçam a fé na presença real de Cristo na Eucaristia. </p>
+
+<h3>Curiosidades</h3>
+<ul>
+  <li>Erding fica no estado da Baviera, uma região tradicionalmente católica da Alemanha. </li>
+  <li>O santuário construído em honra ao milagre passou por diferentes fases arquitetônicas ao longo dos séculos. </li>
+  <li>A história do milagre inspirou peregrinações e devoções locais por muitos anos depois de 1417. </li>
+</ul>
+
+<img src="erding.jpg" id="erdingmilagree" alt="Milagre Eucarístico de Erding (1417)">
+
+<h3>Fontes confiáveis</h3>
+<ul>
+  <li><a href="https://www.miracolieucaristici.org/en/download/erding.pdf" target="_blank">Mostra Internacional dos Milagres Eucarísticos – Relatório do Milagre de Erding (PDF)</a></li>
+  <li><a href="https://www.therealpresence.org/eucharst/mir/english_pdf/Erding.pdf" target="_blank">The Real Presence Association – Relato histórico do milagre de Erding</a></li>
+  <li><a href="https://eucharisticmiraclesoftheworld.weebly.com/germany.html" target="_blank">Eucharistic Miracles of the World – Descrição do milagre de Erding</a></li>
+</ul>
+  </div>
+ </div>
+
+
+ <div class="grupo-milagres holanda">
+  <button class="botao-milagre" onclick="toggleMilagre('amsterdã')">Amsterdã – 1345</button>
+
+  <div id="amsterdã" class="conteudo-milagre">
+   <p>
+  O <strong>Milagre Eucarístico de Amsterdã</strong> aconteceu em 1345 e é considerado um dos mais significativos da história da Igreja. 
+  Ele revela, de maneira extraordinária, a presença real de Jesus na Eucaristia, preservada milagrosamente do fogo.
+</p>
+
+<p>
+  Um homem doente, chamado <em>Ysbrand Dommer</em>, recebeu a Comunhão em sua casa. 
+  Logo após comungar, ele vomitou a hóstia consagrada. 
+  Segundo o costume da época, a empregada lançou o conteúdo na lareira acesa.
+</p>
+
+<p>
+  Na manhã seguinte, algo surpreendente aconteceu: 
+  <strong>a hóstia estava intacta entre as cinzas, sem nenhum dano e rodeada por uma luz</strong>. 
+  O sacerdote recolheu a hóstia, mas ela misteriosamente reapareceu duas vezes na casa do enfermo, 
+  reforçando o sinal de que ali havia algo sobrenatural.
+</p>
+
+<blockquote>
+  “O bispo Jan van Arkel reconheceu oficialmente o milagre, e a casa onde o acontecimento ocorreu tornou-se um lugar de peregrinação.”
+</blockquote>
+
+<h3>O que aconteceu depois</h3>
+<ul>
+  <li>
+    A casa de Ysbrand Dommer foi transformada na capela chamada 
+    <em>Heilige Stede</em> (“Lugar Sagrado”), visitada por inúmeros peregrinos.
+  </li>
+  <li>
+    Em 1452, um grande incêndio destruiu parte da cidade, mas 
+    <strong>a custódia com a hóstia milagrosa permaneceu intacta</strong>.
+  </li>
+  <li>
+    Durante o período protestante, procissões foram proibidas, mas a devoção permaneceu viva graças à 
+    <em>Stille Omgang</em> — a “caminhada silenciosa” — tradição que continua até hoje.
+  </li>
+</ul>
+
+<h3>Significado espiritual</h3>
+<p>
+  O Milagre de Amsterdã testemunha que Cristo permanece realmente presente na Eucaristia. 
+  A hóstia que resistiu ao fogo é vista como um convite à fé, reverência e adoração ao Corpo de Cristo.
+</p>
+
+<ul>
+  <li>
+    A <em>Stille Omgang</em> simboliza humildade e fidelidade, especialmente em tempos de perseguição.
+  </li>
+  <li>
+    O milagre reforça a verdade central da fé católica: 
+    <strong>Jesus está vivo e presente no Santíssimo Sacramento</strong>.
+  </li>
+</ul>
+
+<h3>Na exposição de Carlo Acutis</h3>
+<p>
+  O Milagre de Amsterdã está incluído na 
+  <strong>Mostra Internacional dos Milagres Eucarísticos</strong>, 
+  organizada por São Carlo Acutis, que reuniu relatos e documentos históricos 
+  de milagres reconhecidos pela Igreja ao redor do mundo.
+</p>
+
+<h3>Curiosidades</h3>
+<ul>
+  <li>
+    A capela erguida no local do milagre tornou-se um dos mais importantes pontos de peregrinação medieval dos Países Baixos.
+  </li>
+  <li>
+    A “caminhada silenciosa” foi oficialmente retomada em 1881 e reúne milhares de fiéis todos os anos.
+  </li>
+</ul>
+
+<img src="amsterda.gif" id="amsterda_milagre" alt="Milagre Eucarístico de Amsterdã">
+
+<h3>Fontes confiáveis</h3>
+<ul>
+  <li>
+    The Real Presence – Relato histórico completo: 
+    <a href="https://www.therealpresence.org/eucharst/mir/holland.html" target="_blank">therealpresence.org</a>
+  </li>
+  <li>
+    Exposição de Carlo Acutis – Milagres da Holanda: 
+    <a href="https://www.miracolieucaristici.org/en/map_olanda.html" target="_blank">miracolieucaristici.org</a>
+  </li>
+  <li>
+    PDF oficial da exposição (Carlo Acutis): 
+    <a href="https://www.miracolieucaristici.org/en/download/amsterdam.pdf" target="_blank">amsterdam.pdf</a>
+  </li>
+  <li>
+    Artigo histórico sobre a devoção e a Stille Omgang: 
+    <a href="https://www.homeofthemother.org/en/magazine/selected-articles/spiritual-life/7936-amsterdam" target="_blank">homeofthemother.org</a>
+  </li>
+</ul>
+</div>
+</div>
+
+
+
+
+
+ <div class="grupo-milagres holanda">
+  <button class="botao-milagre" onclick="toggleMilagre('alkmaar')">Alkmaar – 1429</button>
+
+  <div id="alkmaar" class="conteudo-milagre">
+  <p>
+  Em Alkmaar, Holanda, ocorreu um milagre eucarístico em <b>1º de maio de 1429</b>, que reforça vivamente a fé na presença real de Cristo no Santíssimo Sacramento.
+</p>
+
+<p>
+  O padre <em>Folkert</em>, celebrando sua primeira Missa na Catedral de São Lourenço, derramou acidentalmente vinho consagrado sobre sua casula (vestimenta litúrgica). Para surpresa de todos, as três gotas que caíram se transformaram em <strong>sangue vivo</strong>. :contentReference[oaicite:0]{index=0}  
+</p>
+
+<p>
+  Aflito, ele recortou a parte manchada da casula e tentou queimá-la, mas o fogo não consumiu o tecido. Depois, costurou de volta — e, mesmo assim, as manchas de sangue reapareceram como um sinal sobrenatural. :contentReference[oaicite:1]{index=1}  
+</p>
+
+<blockquote>
+  “Em 1433, após várias investigações canônicas, o bispo de Utrecht declarou oficialmente o evento como milagre e autorizou a veneração da relíquia.” :contentReference[oaicite:2]{index=2}  
+</blockquote>
+
+<h3>Desenvolvimento histórico</h3>
+<ul>
+  <li>A peça da casula manchada foi enterrada inicialmente por medo ou insegurança. :contentReference[oaicite:3]{index=3}</li>
+  <li>Anos depois, um capitão de navio, em meio a uma terrível tempestade, viu um anjo que lhe mostrou a relíquia e pediu que ele a levasse até Alkmaar. :contentReference[oaicite:4]{index=4}</li>
+  <li>Seguindo a instrução angelical, o capitão levou a relíquia de volta à igreja, onde foi resgatada intacta. :contentReference[oaicite:5]{index=5}</li>
+  <li>A relíquia hoje está guardada em um relicário em forma de anjo na Catedral de São Lourenço, para veneração dos fiéis. :contentReference[oaicite:6]{index=6}</li>
+</ul>
+
+<h3>Significado espiritual</h3>
+<p>
+  Esse milagre é um forte testemunho da **transubstanciação**, mostrando que o vinho consagrado realmente pode manifestar-se como sangue vivo quando consagrado. :contentReference[oaicite:7]{index=7}  
+</p>
+<p>
+  Também ensina humildade e reverência, já que o padre, assustado com o que aconteceu, tentou esconder a relíquia até que a Igreja pudesse observar e discernir o milagre. :contentReference[oaicite:8]{index=8}  
+</p>
+
+<h3>Veneração e memória</h3>
+<ul>
+  <li>O milagre foi oficialmente reconhecido pelo bispo de Utrecht em 1433. :contentReference[oaicite:9]{index=9}</li>
+  <li>A relíquia permanece até hoje na Catedral de São Lourenço, envolta em devoção. :contentReference[oaicite:10]{index=10}</li>
+  <li>O caso é citado em compilações de milagres eucarísticos, sendo lembrado como um dos símbolos da real presença de Cristo na Eucaristia. :contentReference[oaicite:11]{index=11}</li>
+</ul>
+
+<img src="alkmaar.gif" id="alkmaar_milagre" alt="Milagre Eucarístico de Alkmaar">
+
+<h3>Fontes confiáveis</h3>
+<ul>
+  <li><a href="https://eucharisticmiracles.faith/miracle/alkmaar-1429" target="_blank">EucharisticMiracles.faith – relato do milagre de Alkmaar</a> :contentReference[oaicite:12]{index=12}</li>
+  <li><a href="https://www.therealpresence.org/eucharst/mir/english_pdf/Alkmaar.pdf" target="_blank">The Real Presence – PDF sobre o milagre</a> :contentReference[oaicite:13]{index=13}</li>
+  <li><a href="https://www.miracolieucaristici.org/en/download/alkmaar.pdf" target="_blank">Mostra de Milagres Eucarísticos (Carlo Acutis) – descrição oficial</a> :contentReference[oaicite:14]{index=14}</li>
+  <li><a href="https://gaudiumpress.org/content/46907-o-milagre-eucaristico-de-alkmaar/" target="_blank">Gaudium Press – artigo histórico</a> :contentReference[oaicite:15]{index=15}</li>
+</ul>
+</div>
+</div>
+      
+ <div class="grupo-milagres holanda">
+  <button class="botao-milagre" onclick="toggleMilagre('bergen')">Bergen – 1421</button>
+
+  <div id="bergen" class="conteudo-milagre">
+  <p>
+  O <strong>Milagre Eucarístico de Bergen</strong> aconteceu em 1421, na cidade de <em>Bergen op Zoom</em> (Países Baixos). 
+  É um sinal poderoso da presença real de Cristo na Eucaristia e da fidelidade à fé, mesmo em meio à dúvida.
+</p>
+
+<p>
+  Naquela época, o pároco da Igreja de <em>São Pedro e São Paulo</em> vivia com sérias dúvidas sobre a transubstanciação – se realmente o Corpo e o Sangue de Cristo estavam presentes na Hóstia consagrada. Segundo relatos, após celebrar a Missa, ele pegou as Hóstias que sobraram e as jogou no rio Schelda.   
+</p>
+
+<p>
+  Meses depois, pescadores encontraram essas mesmas Hóstias flutuando nas águas, manchadas por sangue coagulado, o que causou grande comoção e virou motivo de peregrinação.   
+</p>
+
+<blockquote>
+  “Depois da descoberta milagrosa, muitos fiéis vieram para venerar as Hóstias resgatadas, e a devoção ao Santíssimo Sacramento foi restabelecida na região.” 
+</blockquote>
+
+<h3>Desenvolvimento histórico</h3>
+<ul>
+  <li>O milagre foi reconhecido oficialmente pelo bispo local, o que permitiu a veneração pública das Hóstias encontradas. </li>
+  <li>Durante a Reforma Protestante, a devoção ao milagre sofreu, mas continuou viva de forma discreta entre os católicos locais. </li>
+  <li>No século XX, a memória desse milagre foi restaurada, e há eventos públicos para comemorar esse sinal da fé. </li>
+</ul>
+
+<h3>Significado espiritual</h3>
+<p>
+  Esse milagre reforça duas verdades centrais da fé católica:
+</p>
+<ul>
+  <li><strong>A presença real</strong> — mesmo após ser lançada no rio, a Hóstia permaneceu sagrada, manchada de sangue, mostrando que não era simplesmente pão, mas Corpo de Cristo. </li>
+  <li><strong>A conversão e a reverência</strong> — a experiência do sacerdote duvidoso e a recuperação das Hóstias convidam os fiéis a se aproximarem da Eucaristia com fé, respeito e humildade.</li>
+</ul>
+
+<h3>Na exposição de Carlo Acutis</h3>
+<p>
+  Esse milagre faz parte da <strong>Mostra Internacional dos Milagres Eucarísticos</strong> idealizada por <b>São Carlo Acutis</b>. 
+  A exposição apresenta Bergen (1421) como um dos eventos significativos da Holanda. 
+</p>
+
+<h3>Curiosidades</h3>
+<ul>
+  <li>O local original do milagre, Bergen op Zoom, é uma cidade histórica cheia de canais — símbolo visual que conecta bem com a história do milagre. </li>
+  <li>A devoção em torno desse milagre ressurge ao longo dos séculos, mostrando como a fé no Santíssimo Sacramento pode resistir a crises e tempos difíceis. </li>
+</ul>
+
+<img src="bergenn.gif" id="bergen_milagre" alt="Milagre Eucarístico de Bergen op Zoom">
+
+<h3>Fontes confiáveis</h3>
+<ul>
+  <li><a href="https://www.therealpresence.org/eucharst/mir/english_pdf/Bergen.pdf" target="_blank">The Real Presence – descrição histórica do milagre de Bergen (PDF)</a> </li>
+  <li><a href="https://pt.scribd.com/document/215239257/MILAGRES-EUCARISTICOS" target="_blank">Scribd – compêndio de milagres eucarísticos (inclui Bergen) </a> </li>
+  <li><a href="https://www.miracolieucaristici.org/en/map_olanda.html" target="_blank">Mostra de Milagres Eucarísticos (Carlo Acutis) – página da Holanda</a> </li>
+</ul>
+
+</div>
+</div>
+      
+
+
+<div class="grupo-milagres holanda">
+  <button class="botao-milagre" onclick="toggleMilagre('stiphout')">Stiphout – 1342</button>
+
+  <div id="stiphout" class="conteudo-milagre">
+ <p>
+    O <strong>Milagre Eucarístico de Stiphout</strong> aconteceu em <strong>1342</strong>, na aldeia de
+    <em>Stiphout</em>, nos Países Baixos. É um acontecimento que mostra a proteção divina sobre o Santíssimo Sacramento,
+    pois, mesmo diante de um incêndio devastador na igreja, as Hóstias consagradas foram preservadas. 
+  </p>
+
+  <p>
+    Durante uma violenta tempestade, um raio atingiu a igreja paroquial e o fogo alastrou rapidamente. 
+    Várias pessoas se mobilizaram para salvar o que podiam; entre elas, <strong>Jan Balloys</strong> foi içado pela janela para alcançar o altar
+    e buscar o tabernáculo. Ao abrir o sacrário, descobriu que as Hóstias consagradas tinham sido preservadas — apesar das chamas ao redor — 
+    e pôde levá-las em segurança. Muitas testemunhas consideraram o episódio um sinal extraordinário da presença de Cristo no Santíssimo Sacramento. 
+  </p>
+ 
+  
+  <blockquote>
+    “Ao ver as Hóstias preservadas, os presentes exclamaram: 'Milagre!' — e a fé local foi renovada.” 
+  </blockquote>
+
+  <h3>Desenvolvimento histórico</h3>
+  <ul>
+    <li>
+      A igreja foi reconstruída após o incêndio, e a memória do evento foi preservada em documentos e em uma pintura que ainda existe na paróquia. 
+    </li>
+    <li>
+      Ao longo dos séculos, por causa de guerras e mudanças religiosas, os vestígios físicos diretos do milagre se perderam; 
+      contudo a tradição e a celebração anual na festa de Corpus Christi mantiveram viva a recordação do acontecimento. 
+    </li>
+  </ul>
+
+  <h3>Significado espiritual</h3>
+  <p>
+    O milagre de Stiphout é um forte testemunho da <strong>proteção divina sobre a Eucaristia</strong> e convida à reverência e à coragem daqueles
+    que defendem o Santíssimo Sacramento. Também é um lembrete de que a presença real de Cristo na Hóstia transcende danos físicos e
+    calamidades naturais.
+  </p>
+
+  <h3>Na exposição de Carlo Acutis</h3>
+  <p>
+    O episódio de Stiphout está listado em compilações e folhetos usados na <strong>Mostra Internacional dos Milagres Eucarísticos</strong>, idealizada por Carlo Acutis,
+    que reúne relatos históricos — incluindo o de Stiphout — para fortalecer a devoção e a compreensão sobre a Eucaristia. 
+  </p>
+
+  <img src="stiphout.gif" id="stiphout_img" alt="Representação do milagre eucarístico de Stiphout (1342)">
+
+  <h3>Fontes confiáveis</h3>
+  <ul>
+    <li>
+      Compilação de milagres eucarísticos (lista e PDFs) — inclui entrada sobre Stiphout (1342).  
+      <a href="https://www.louisaprays.org/files/Eucharistic_Miracles_Listed.pdf" target="_blank" rel="noopener noreferrer">LouisaPrays: Eucharistic Miracles (PDF)</a>. 
+    <li>
+      Relato histórico e folheto usado em exposições — versão PDF com descrição do episódio de Stiphout.  
+      <a href="https://www.therealpresence.org/eucharst/mir/english_pdf/Stiphout.pdf" target="_blank" rel="noopener noreferrer">TheRealPresence — Stiphout (PDF)</a>. 
+    </li>
+    <li>
+      Catálogo / compêndios de milagres eucarísticos (downloads e folhetos usados em mostras como a de Carlo Acutis).  
+      <a href="https://www.miracolieucaristici.org/pr/download/stiphout.pdf" target="_blank" rel="noopener noreferrer">MiracoliEucaristici — Stiphout (folheto)</a>. 
+    </li>
+  </ul>
+</div>
+</div>
+
+<div class="grupo-milagres holanda">
+  <button class="botao-milagre" onclick="toggleMilagre('boxmeer')">Boxmeer – 1400</button>
+
+  <div id="boxmeer" class="conteudo-milagre">
+   <p>
+    O <strong>Milagre Eucarístico de Boxmeer</strong> ocorreu por volta do ano de <strong>1400</strong>, na igreja de
+    <em>São Pedro e São Paulo</em>, na cidade de Boxmeer (Países Baixos). É um sinal impressionante da presença real de Cristo
+    no Santíssimo Sacramento, especialmente diante da dúvida do sacerdote celebrante.
+  </p>
+
+  <p>
+    Durante a Missa, o sacerdote <strong>Arnoldus Groen</strong> teve dúvidas sobre a presença real no vinho consagrado. Após a consagração,
+    o vinho começou a borbulhar como se estivesse fervendo e transbordou do cálice, escorrendo sobre o corporal.  
+    Segundo os relatos, o vinho se transformou em Sangue, que coaguliu formando um grande grumo, do tamanho de uma noz.  
+    
+  </p>
+
+  <p>
+    O sacerdote, aterrorizado, pediu perdão a Deus por suas dúvidas — e, então, imediatamente, as bolhas de Sangue pararam de subir.
+    A relíquia do corporal manchado e do Sangue coagulado existe até hoje e é venerada pelos fiéis.
+  </p>
+
+  <blockquote>
+    “Os documentos que narram esse milagre são numerosos: lápides, pinturas e relatos de pontífices como Clemente XI, Bento XIV,
+    Pio IX e Leão XIII mostram uma devoção especial a esse sinal.”  
+    
+  </blockquote>
+
+  <h3>Desenvolvimento histórico</h3>
+  <ul>
+    <li>
+      A relíquia do corporal e do Sangue permanece até hoje na igreja de São Pedro e São Paulo, em Boxmeer.  
+      
+    </li>
+    <li>
+      Todos os anos, há uma procissão solene em memória do milagre, especialmente durante a festa de Corpus Christi.  
+      
+    </li>
+    <li>
+      A devoção ao Sangue de Boxmeer foi reforçada ao longo dos séculos, com reconhecimento por vários papas.  
+     
+    </li>
+  </ul>
+
+  <h3>Significado espiritual</h3>
+  <p>
+    Esse milagre sublinha a verdade da <strong>transubstanciação</strong>: o vinho consagrado realmente se transmutou em Sangue.
+    Também convida cada fiel a confrontar suas dúvidas com humildade, reconhecendo que mesmo na incerteza Deus pode se manifestar
+    com sinais claros.
+  </p>
+
+  <h3>Na exposição de Carlo Acutis</h3>
+  <p>
+    O milagre de Boxmeer está incluído na <strong>Mostra Internacional de Milagres Eucarísticos</strong>, idealizada por <strong>São Carlo Acutis</strong>, que catalogou e apresentou diversos milagres ao redor do mundo.  
+    
+  </p>
+
+  <img src="boxmeer.jpg" id="boxmeer_img" alt="Milagre Eucarístico de Boxmeer (1400)">
+
+  <h3>Fontes confiáveis</h3>
+  <ul>
+    <li>
+      <a href="https://www.miracolieucaristici.org/pr/download/boxmeer.pdf" target="_blank" rel="noopener noreferrer">
+        Miracolieucaristici.org – Folheto oficial do milagre de Boxmeer (Carlo Acutis)  
+      </a> 
+    </li>
+    <li>
+      <a href="https://www.therealpresence.org/eucharst/mir/english_pdf/Boxmeer.pdf" target="_blank" rel="noopener noreferrer">
+        The Real Presence – Relato histórico do milagre de Boxmeer  
+      </a> 
+    </li>
+    <li>
+      <a href="https://www.miracolieucaristici.org/en/liste/scheda.html?ct=Boxmeer%2C+1400&nat=olanda&wh=boxmeer" target="_blank" rel="noopener noreferrer">
+        Mostra Online – Página do milagre de Boxmeer no site da exposição de Carlo Acutis  
+      </a> 
+    </li>
+  </ul>
+
+</div>
+</div>
+      
+
+
+
+<div class="grupo-milagres suica">
+  <button class="botao-milagre" onclick="toggleMilagre('ettiswil')">Ettiswil – 1447</button>
+
+  <div id="ettiswil" class="conteudo-milagre">
+   <p>
+    O <strong>Milagre Eucarístico de Boxmeer</strong> ocorreu por volta do ano de <strong>1400</strong>, na igreja de
+    <em>São Pedro e São Paulo</em>, na cidade de Boxmeer (Países Baixos). É um sinal impressionante da presença real de Cristo
+    no Santíssimo Sacramento, especialmente diante da dúvida do sacerdote celebrante.
+  </p>
+
+  <p>
+    Durante a Missa, o sacerdote <strong>Arnoldus Groen</strong> teve dúvidas sobre a presença real no vinho consagrado. Após a consagração,
+    o vinho começou a borbulhar como se estivesse fervendo e transbordou do cálice, escorrendo sobre o corporal.  
+    Segundo os relatos, o vinho se transformou em Sangue, que coaguliu formando um grande grumo, do tamanho de uma noz.  
+    
+  </p>
+
+  <p>
+    O sacerdote, aterrorizado, pediu perdão a Deus por suas dúvidas — e, então, imediatamente, as bolhas de Sangue pararam de subir.
+    A relíquia do corporal manchado e do Sangue coagulado existe até hoje e é venerada pelos fiéis.
+  </p>
+
+  <blockquote>
+    “Os documentos que narram esse milagre são numerosos: lápides, pinturas e relatos de pontífices como Clemente XI, Bento XIV,
+    Pio IX e Leão XIII mostram uma devoção especial a esse sinal.”  
+    
+  </blockquote>
+
+  <h3>Desenvolvimento histórico</h3>
+  <ul>
+    <li>
+      A relíquia do corporal e do Sangue permanece até hoje na igreja de São Pedro e São Paulo, em Boxmeer.  
+      
+    </li>
+    <li>
+      Todos os anos, há uma procissão solene em memória do milagre, especialmente durante a festa de Corpus Christi.  
+      
+    </li>
+    <li>
+      A devoção ao Sangue de Boxmeer foi reforçada ao longo dos séculos, com reconhecimento por vários papas.  
+     
+    </li>
+  </ul>
+
+  <h3>Significado espiritual</h3>
+  <p>
+    Esse milagre sublinha a verdade da <strong>transubstanciação</strong>: o vinho consagrado realmente se transmutou em Sangue.
+    Também convida cada fiel a confrontar suas dúvidas com humildade, reconhecendo que mesmo na incerteza Deus pode se manifestar
+    com sinais claros.
+  </p>
+
+  <h3>Na exposição de Carlo Acutis</h3>
+  <p>
+    O milagre de Boxmeer está incluído na <strong>Mostra Internacional de Milagres Eucarísticos</strong>, idealizada por <strong>São Carlo Acutis</strong>, que catalogou e apresentou diversos milagres ao redor do mundo.  
+    
+  </p>
+
+  <img src="boxmeer.jpg" id="boxmeer_img" alt="Milagre Eucarístico de Boxmeer (1400)">
+
+  <h3>Fontes confiáveis</h3>
+  <ul>
+    <li>
+      <a href="https://www.miracolieucaristici.org/pr/download/boxmeer.pdf" target="_blank" rel="noopener noreferrer">
+        Miracolieucaristici.org – Folheto oficial do milagre de Boxmeer (Carlo Acutis)  
+      </a> 
+    </li>
+    <li>
+      <a href="https://www.therealpresence.org/eucharst/mir/english_pdf/Boxmeer.pdf" target="_blank" rel="noopener noreferrer">
+        The Real Presence – Relato histórico do milagre de Boxmeer  
+      </a> 
+    </li>
+    <li>
+      <a href="https://www.miracolieucaristici.org/en/liste/scheda.html?ct=Boxmeer%2C+1400&nat=olanda&wh=boxmeer" target="_blank" rel="noopener noreferrer">
+        Mostra Online – Página do milagre de Boxmeer no site da exposição de Carlo Acutis  
+      </a> 
+    </li>
+  </ul>
+
+</div>
+</div>
+
+
+
+
+
+  <div class="grupo-milagres croacia">
+  <button class="botao-milagre" onclick="toggleMilagre('ludbreg')">Ludbreg – 1411</button>
+
+  <div id="ludbreg" class="conteudo-milagre">
+   <p>O <strong>Milagre Eucarístico de Ludbreg</strong> ocorreu no ano de 1411, na cidade de Ludbreg, localizada no norte da atual Croácia, dentro da capela do castelo da família Batthyány.</p>
+
+<p>Durante a consagração, o sacerdote que celebrava a missa começou a duvidar da presença real de Cristo no vinho consagrado. No mesmo instante, o vinho no cálice transformou-se visivelmente em sangue humano.</p>
+
+<p>Assustado com o ocorrido, o padre interrompeu a celebração e decidiu esconder o cálice com o sangue milagroso dentro da parede atrás do altar, pedindo segredo ao operário que realizou a obra. O sacerdote só revelou o acontecimento pouco antes de morrer, permitindo que o milagre fosse conhecido.</p>
+
+<blockquote>
+  “O Senhor confirmou com um sinal visível aquilo que a fé da Igreja sempre professou.”
+</blockquote>
+
+<h3>Reconhecimento da Igreja</h3>
+<p>Após investigações e testemunhos, o Papa <strong>Leão X</strong> autorizou oficialmente a veneração do Sangue Milagroso em 14 de abril de 1513, por meio de uma bula papal. Desde então, Ludbreg tornou-se um importante local de peregrinação.</p>
+
+<h3>Veneração e celebrações</h3>
+<p>Anualmente, no início de setembro, a cidade celebra a festa conhecida como <strong>“Sveta Nedilja”</strong> (Santa Domingo), com missas, procissões e momentos de oração em honra ao milagre ocorrido em 1411.</p>
+
+<h3>Curiosidades</h3>
+<ul>
+  <li>Ludbreg é conhecida como o <strong>Santuário do Preciosíssimo Sangue de Cristo</strong>.</li>
+  <li>O milagre é oficialmente reconhecido pela Igreja Católica.</li>
+  <li>Faz parte da exposição internacional dos Milagres Eucarísticos organizada por <strong>São Carlo Acutis</strong>.</li>
+</ul>
+
+<h3>Fontes</h3>
+<ul>
+  <li>
+    Site oficial de turismo religioso da Croácia –
+    <a href="https://www.turizam-vzz.hr/en/explore/cultural-heritage/161-the-sanctuary-of-the-most-precious-blood-of-christ" target="_blank">
+      Santuário do Preciosíssimo Sangue de Cristo (Ludbreg)
+    </a>
+  </li>
+  <li>
+    Perpetual Eucharistic Adoration –
+    <a href="https://perpetualeucharisticadoration.com/eucharistic-miracle-of-ludbreg-croatia-1411/" target="_blank">
+      Eucharistic Miracle of Ludbreg
+    </a>
+  </li>
+  <li>
+    This Is Jesus –
+    <a href="https://thisisjesus.com/eucharistic-miracle-of-ludbreg-croatia-1411/" target="_blank">
+      Eucharistic Miracle of Ludbreg (1411)
+    </a>
+  </li>
+</ul>
+
+<div class="galeria-ludbreg">
+
+  
+
+  <div class="imagens-secundarias">
+    <figure>
+      <img src="ludbreg.JPG" alt="ludbreg">
+      <figcaption>Relicário do milagre eucarístico.</figcaption>
+    </figure>
+
+    <figure>
+      <img src="ludbregg.jpg" alt="ludbregg">
+      <figcaption>Lugar onde ocorreu o Milagre.</figcaption>
+    </figure>
+  </div>
+
+</div>
+
+
+
+
+
+
+</div>
+</div>
+</section>
+</main>
+  
+    <footer>
+      <p>&copy; 2025 - Devocional dos Milagres Eucarísticos </p>
+    </footer>
+  </body>
+  </html>
+  
+
+
+
+
+<script> 
+
+/* ----------------- FUNÇÕES DE MILAGRES ------------------- */
+
+// Estado para guardar o país ativo
+let paisAtivo = null;
+
+// Mostra apenas os grupos de milagres do país selecionado
+function mostrarMilagres(pais) {
+    const grupos = document.querySelectorAll('.grupo-milagres');
+    const botoes = document.querySelectorAll('.filtros button');
+
+    // Se já está ativo e clicar de novo → fecha tudo
+    if (paisAtivo === pais) {
+        grupos.forEach(grupo => grupo.classList.remove('ativo'));
+        botoes.forEach(botao => botao.classList.remove('ativo'));
+        paisAtivo = null;
+        return;
+    }
+
+    // Marca o novo botão ativo
+    botoes.forEach(botao => {
+        botao.classList.toggle('ativo', botao.getAttribute('data-pais') === pais);
+    });
+
+    // Abre só o grupo do país escolhido, fecha os outros
+    grupos.forEach(grupo => {
+        if (grupo.classList.contains(pais)) {
+            grupo.classList.add('ativo');
+        } else {
+            grupo.classList.remove('ativo');
+        }
+    });
+
+    paisAtivo = pais;
+}
+
+// Abre ou fecha um milagre individual
+function toggleMilagre(id) {
+    const conteudo = document.getElementById(id);
+    conteudo.classList.toggle('ativo');
+}
+
+// Seleciona todos os botões de filtro
+const botoesFiltro = document.querySelectorAll('.filtros button');
+
+// Adiciona o evento de clique em cada botão
+botoesFiltro.forEach(botao => {
+  botao.addEventListener('click', () => {
+    const pais = botao.getAttribute('data-pais');
+    mostrarMilagres(pais);
+  });
+});
+
+
+
+
+
+
+
+ // Abrir em tela cheia
+  document.getElementById("bruxelas").onclick = function() {
+    document.getElementById("fullscreen").style.display = "block";
+    document.getElementById("fullscreenImg").src = this.src;
+  }
+
+  // Fechar tela cheia
+  function closeFullscreen() {
+    document.getElementById("fullscreen").style.display = "none";
+  }
+
+
+
+
+
+//fade do carregamento
+  // Fade de entrada ao carregar a página
+  window.addEventListener('load', () => {
+    const fade = document.getElementById('fade');
+    fade.classList.add('fade-out');
+    setTimeout(() => fade.remove(), 1200); // remove o div após o fade
+  });
+
+  // Fade de saída ao navegar para outra página
+  window.addEventListener('beforeunload', () => {
+    document.body.classList.add('fade-leave');
+  });
+</script> 

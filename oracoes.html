@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Orações | Milagres Eucarísticos</title>
+  <style>
+body {
+  font-family: 'Merriweather', serif;
+  background-color: #fdf9f1;
+  color: #3b1f1f;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #800000;
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+}
+
+  nav {
+    background-color: #f8e8d0;
+    padding: 10px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    position: sticky;  /* <- fixo enquanto rola a página */
+    top: 0;            /* <- distância do topo */
+    z-index: 1000;     /* <- garante que fique acima de outros elementos */
+}
+
+nav a {
+  color: #800000;
+  margin: 0 12px;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+nav a:hover, nav a:focus, nav a.active {
+  background-color: #800000;
+  color: white;
+}
+
+main {
+  max-width: 1000px;
+  margin: auto;
+  padding: 15px 20px;
+}
+
+.search-box input[type="search"] {
+  width: 80%;
+  padding: 9px 12px;
+  font-size: 1rem;
+  border: 2px solid #a68a6e;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  margin-left: 6.8%;
+}
+
+button, .filter-buttons button {
+  background-color: #800000;
+  color: white;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 3px 0;
+  transition: background-color 0.3s;
+}
+
+button:hover, .filter-buttons button:hover {
+  background-color: #600000;
+}
+
+.accordion {
+  background-color: #800000;
+  color: white;
+  cursor: pointer;
+  padding: 10px 15px; /* botão mais compacto */
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  font-family: 'Cinzel', serif;
+}
+
+.accordion:hover {
+  background-color: #600000;
+}
+
+.panel {
+  background-color: #fff;
+  overflow: hidden;
+  border-radius: 6px;
+  box-shadow: 0 0 8px rgba(150, 120, 80, 0.15);
+  margin-bottom: 8px;
+  color: #3b1f1f;
+  font-family: 'Merriweather', serif;
+  font-size: 1.1rem;
+  max-height: 0;
+  opacity: 0;
+  padding: 0 15px; /* padding horizontal apenas */
+  transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
+}
+
+.panel p {
+  margin: 2px 2px 0;       /* remove espaços extras entre parágrafos */
+  line-height: 1.35;   /* compacta linhas, mas ainda legível */
+  margin-bottom: 8px;
+}
+
+.panel.open {
+  opacity: 1;
+  padding: 4px 15px;  /* padding vertical menor, horizontal mantém */
+}
+
+article.prayer {
+  background-color: #fff;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(150, 120, 80, 0.15);
+}
+
+article.prayer h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
+  margin-top: 0;
+  color: #4b392d;
+}
+
+article.prayer p {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 2px;
+}
+
+footer {
+  background-color: #800000;
+  color: white;
+  text-align: center;
+  padding: 12px;
+}
+
+
+
+
+
+
+
+ #fade {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, #fffbe6, #fffaf1, #ffffff);
+    z-index: 9999;
+    opacity: 1;
+    pointer-events: none;
+    animation: fadeOut 1.2s ease forwards; /* duração do fade */
+  }
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* Fade de saída ao trocar de página */
+  body.fade-leave {
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+
+  #pdf{
+    margin-right: 40px;
+  }
+</style>
+</head>
+<body>
+
+  <div id="fade"></div>
+
+  <header>
+    <h1>Algumas Orações: Encontre paz e conforto na palavra de Deus</h1>
+  </header>
+
+  <nav>
+    <a href="inicio.html">Início</a>
+    <a href="milagres.html">Milagres</a>
+    <a href="biografia.html">São Carlo</a>
+    <a href="oracoes.html">Orações</a>
+    <a href="virgem maria.html">Virgem Maria</a>
+    <a href="contato.html">Contato</a>
+  </nav>
+<!-- Biblioteca para gerar PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <main>
+
+
+    <div style="text-align:center; margin-bottom:10px;" id="pdf">
+  <button onclick="printPrayer()">Imprimir oração</button>
+  <button onclick="generatePDF()">Gerar PDF</button>
+</div>
+
+
+
+    <!-- Caixa de busca -->
+    <section class="search-box">
+      <input type="search" id="searchInput" placeholder="Buscar oração..." aria-label="Buscar oração" />
+    </section>
+<br>
+ 
+
+<button class="accordion">Oração a São Miguel Arcanjo</button> 
+
+<div class="panel"> 
+
+<p>São Miguel Arcanjo, defendei-nos no combate. Sede o nosso refúgio contra as maldades e ciladas do demônio. Ordene-lhe Deus, instantemente o pedimos, e vós, príncipe da milícia celeste, pela virtude divina, precipitai no inferno a Satanás e aos outros espíritos malignos, que andam pelo mundo para perder as almas. Amém. </p></p> 
+
+</div> <br>
+
+
+
+<button class="accordion">Oração de São Bento</button> 
+
+<div class="panel"> 
+<p>A Cruz Sagrada seja a minha luz,<br> 
+
+não seja o dragão o meu guia.<br> 
+
+Retira-te, Satanás!<br> 
+
+Nunca me aconselhes coisas vãs.<br> 
+
+É mau o que tu me ofereces,<br> 
+
+bebe tu mesmo os teus venenos!</p> 
+
+</div> <br>
+
+ 
+
+<button class="accordion">Oração de Pós Comunhão: Alma de Cristo</button> 
+
+<div class="panel"> 
+
+<p>Alma de Cristo, santificai-me. 
+
+Corpo de Cristo, salvai-me.<br> 
+
+Sangue de Cristo, inebriai-me.<br> 
+
+Água do lado de Cristo, lavai-me.<br> 
+
+Paixão de Cristo, confortai-me.<br> 
+
+Ó bom Jesus, ouvi-me.<br> 
+
+Dentro de Vossas chagas, escondei-me.<br> 
+
+Não permitais que me separe de Vós.<br> 
+
+Do espírito maligno, defendei-me.<br> 
+
+Na hora da minha morte, chamai-me<br> 
+
+e mandai- me ir para Vós,<br> 
+
+para que com os vossos Santos Vos louve<br> 
+
+por todos os séculos dos séculos.<br> 
+
+Amém.</p> 
+
+</div> <br>
+
+
+ 
+
+<button class="accordion">Oração de Pós Comunhão: Santo Tomás de Aquino</button> 
+
+<div class="panel"> 
+
+ 
+<p>
+
+Dou-vos graças, Senhor santo, Pai onipotente, Deus eterno, a vós que, sem merecimento nenhum de minha parte, mas por efeito de vossa misericórdia, vos dignastes saciar-me, sendo eu pecador e vosso indigno servo, com o corpo adorável e com o sangue precioso do vosso Filho, Nosso Senhor Jesus Cristo. 
+
+Eu vos peço que esta comunhão não me seja imputada como uma falta digna de castigo, mas interceda eficazmente para alcançar o meu perdão; seja a armadura da minha fé e o escudo da minha boa vontade; livre-me de meus vícios; apague os meus maus desejos; mortifique a minha concupiscência; aumente em mim a caridade e a paciência, a humildade, a obediência e todas as virtudes; sirva-me de firme defesa contra os embustes de todos os meus inimigos, tanto visíveis como invisíveis; serene e regule perfeitamente todos os movimentos, tanto de minha carne como de meu espírito; una-me firmemente a vós, que sois o único e verdadeiro Deus; e seja enfim a feliz consumação de meu destino. 
+
+ 
+
+Dignai-vos, Senhor, eu vos suplico, conduzir-me, a mim pecador, a esse inefável festim onde, com o vosso Filho e o Espírito Santo, sois para os vossos santos luz verdadeira, gozo pleno e alegria eterna, cúmulo de delícias e felicidade perfeita. 
+
+ 
+
+Pelo mesmo Jesus Cristo, Senhor Nosso. 
+
+ 
+
+Amem.</p> 
+
+</div> <br>
+ 
+
+<button class="accordion">Pai Nosso</button> 
+
+<div class="panel"> 
+
+ 
+
+<p>Pai Nosso que estais nos Céus,<br>  
+
+santificado seja o vosso Nome, <br> 
+
+venha a nós o vosso Reino, <br> 
+
+seja feita a vossa vontade <br> 
+
+assim na terra como no Céu. <br> 
+
+O pão nosso de cada dia nos dai hoje, <br> 
+
+perdoai-nos as nossas ofensas <br> 
+
+assim como nós perdoamos <br> 
+
+a quem nos tem ofendido, <br> 
+
+e não nos deixeis cair em tentação, <br> 
+
+mas livrai-nos do Mal.<br> 
+
+Amem.</p> 
+
+ 
+
+</div> <br>
+
+ 
+
+<button class="accordion">Ave maria</button> 
+
+<div class="panel"> 
+
+<p>Ave Maria, cheia de graça, <br> 
+
+o Senhor é convosco, <br> 
+
+bendita sois vós entre as mulheres <br> 
+
+e bendito é o fruto do vosso ventre, Jesus. <br> 
+
+Santa Maria, Mãe de Deus, <br> 
+
+rogai por nós pecadores, <br> 
+
+agora e na hora da nossa morte.<br> 
+
+Amem.</p> 
+
+ 
+
+</div> <br>
+
+
+
+<button class="accordion">Anjo da Guarda</button> 
+
+<div class="panel"> 
+<p>Santo Anjo do Senhor, <br> 
+
+meu zeloso guardador, <br> 
+
+pois que a ti me confiou a Piedade divina,<br>  
+
+hoje e sempre <br> 
+
+me governa, rege, guarda e ilumina. <br> 
+
+Amem.</p> 
+
+ 
+ 
+
+</div> <br>
+
+
+ 
+
+<button class="accordion">Oração a São José</button> 
+
+<div class="panel"> 
+
+<p>Salve, guardião do Redentor<br> 
+
+e esposo da Virgem Maria!<br> 
+
+A vós, Deus confiou o seu Filho;<br> 
+
+em vós, Maria depositou a sua confiança;<br> 
+
+convosco, Cristo tornou-Se homem.<br> 
+
+Ó Bem-aventurado José, mostrai-vos pai também para nós<br> 
+
+e guiai-nos no caminho da vida.<br> 
+
+Alcançai-nos graça, misericórdia e coragem,<br> 
+
+e defendei-nos de todo o mal. <br> 
+
+Amem.</p> 
+
+</div> <br>
+
+
+
+<button class="accordion">Angelus</button> 
+
+<div class="panel"> 
+
+ 
+
+<p>℣. O Anjo do Senhor anunciou à Maria.<br> 
+
+ <b>℟. E ela concebeu do Espírito Santo.</b><br><br> 
+
+ 
+
+ Ave Maria, cheia de graça, o Senhor é convosco. Bendita sois vós entre as mulheres, e bendito é o fruto do Vosso ventre, Jesus. Santa Maria, Mãe de Deus, rogai por nós, pecadores, agora e na hora da nossa morte. Amém.<br><br> 
+
+
+
+ ℣. Eis aqui a escrava do Senhor.<br> 
+
+<b> ℟. Faça-se em mim segundo a Vossa palavra.</b><br><br> 
+
+
+
+Reza-se a Ave-Maria.<br><br> 
+
+ ℣. E o Verbo se fez carne.<br> 
+
+<b> ℟. E habitou entre nós.</b><br><br> 
+
+ 
+
+Reza-se a Ave-Maria.<br><br> 
+
+
+
+℣. Rogai por nós, santa Mãe de Deus.<br> 
+<b>℟. Para que sejamos dignos das promessas de Cristo.</b><br><br> 
+
+
+ ℣. Oremos: Derramai, ó Deus, a Vossa graça em nossos corações, para que, conhecendo pela mensagem do Anjo a encarnação do Vosso Filho, cheguemos, por Sua Paixão e Cruz, à glória da ressurreição. Por Cristo, Nosso Senhor.<br> 
+
+<b> ℟. Amém.</b><br><br> 
+
+ 
+
+ ℣. Glória ao Pai, e ao Filho e ao Espírito Santo,<br> 
+
+<b>℟. Assim como era no princípio, agora e sempre, por todos os séculos dos séculos. Amém.</b><br>
+</p> 
+
+ 
+
+</div> <br>
+
+ 
+
+<button class="accordion">Credo</button> 
+
+<div class="panel"> 
+
+ 
+
+<p>Creio em Deus Pai, todo-poderoso, criador do Céu e da Terra e em Jesus Cristo, seu único Filho, Nosso Senhor; que foi concebido pelo poder do Espírito Santo; nasceu da Virgem Maria, padeceu sob Pôncio pilatos, foi crucificado, morto e sepultado; desceu a mansão dos mortos; ressuscitou ao terceiro dia; subiu aos céus, está sentado a Direita de Deus Pai todo-poderoso, donde há de vir julgar os vivos e os mortos. Creio no Espírito Santo, na santa Igreja Católica, na comunhão dos santos, na remissão dos pecados, na ressurreição da carne, na Vida eterna. Amém!</p> 
+
+ 
+
+</div> <br>
+
+ 
+
+<button class="accordion">Salve Rainha</button> 
+
+<div class="panel"> 
+
+ 
+<p>Salve, Rainha, <br> 
+
+mãe de misericórdia, <br> 
+
+vida, doçura, esperança nossa, salve! <br> 
+
+A Vós bradamos, <br> 
+
+os degredados filhos de Eva. <br> 
+
+A Vós suspiramos, gemendo e chorando <br> 
+
+neste vale de lágrimas. <br> 
+
+Eia, pois, advogada nossa, <br> 
+
+esses Vossos olhos misericordiosos <br> 
+
+a nós volvei. <br> 
+
+E, depois deste desterro, <br> 
+
+nos mostrai Jesus, bendito fruto <br> 
+
+do Vosso ventre. <br> 
+
+Ó clemente, ó piedosa, <br> 
+
+ó doce Virgem Maria. <br> 
+
+Rogai por nós, Santa Mãe de Deus, <br> 
+
+para que sejamos dignos das promessas de Cristo. Amém.<br></p> 
+
+ 
+
+</div> 
+<br>
+ 
+
+<button class="accordion">Magnificat</button> 
+
+<div class="panel"> 
+
+ 
+
+<p>Minha alma glorifica ao Senhor, meu espírito; exulta de alegria em Deus, meu Salvador, porque olhou para sua pobre serva. Por isto, desde agora, me proclamarão bem-aventurada todas as gerações, porque realizou em mim maravilhas aquele que é poderoso e cujo nome é Santo. Sua misericórdia se estende, de geração em geração, sobre os que o temem. Manifestou o poder do seu braço: 
+
+desconcertou os corações dos soberbos. Derrubou do trono os poderosos e exaltou os humildes. Saciou de bens os indigentes e despediu de mãos vazias os ricos. Acolheu a Israel, seu servo, lembrado da sua misericórdia, conforme prometera a nossos pais, em favor de Abraão e sua posteridade, para sempre.</p> 
+
+ 
+
+</div> <br>
+
+
+
+<button class="accordion">Oração a São Josemaría Escrivá</button> 
+
+<div class="panel"> 
+
+<p>Ó Deus, que por mediação da Santíssima Virgem concedestes inúmeras graças a S. Josemaría, sacerdote, escolhendo-o como instrumento fidelíssimo para fundar o Opus Dei, caminho de santificação no trabalho profissional e no cumprimento dos deveres quotidianos do cristão, fazei que eu também saiba converter todos os momentos e circunstâncias da minha vida em ocasião de Vos amar, e de servir com alegria e simplicidade a Igreja, o Romano Pontífice e as almas, iluminando os caminhos da terra com a luz da fé e do amor. Concedei-me por intercessão de S. Josemaría o favor que Vos peço (fazer pedido).<br> 
+
+Amém.<br> 
+
+Rezar Pai Nosso, Ave-Maria, Glória</p> 
+
+</div> <br>
+
+
+<button class="accordion">Ato de Contrição</button> 
+
+<div class="panel"> 
+
+<p>Senhor meu Jesus Cristo, Deus e homem verdadeiro, Criador e Redentor meu, por serdes Vós quem Sois, sumamente bom e digno de ser amado sobre todas as coisas, pesa-me, Senhor, de todo o meu coração de Vos ter ofendido; pesa-me também, por ter perdido o céu e merecido o inferno; e proponho firmemente, ajudado com a Vossa divina graça, emendar-me e nunca mais Vos tornar a ofender e espero alcançar o perdão pela Vossa infinita misericórdia. Amém.</p> 
+</div> <br>
+
+ 
+
+<button class="accordion">Vinde Espírito Santo</button> 
+
+<div class="panel"> 
+
+<p>Vinde Espírito santo, enchei os corações dos vossos fiéis e acendei neles o fogo do Vosso Amor e enviai o Vosso Espírito e tudo será criado e renovareis a face da terra.<br> 
+
+ 
+
+<b>Oremos:</b> Ó Deus que instruíste os corações dos vossos fiéis, com a luz do Espírito Santo, fazei que apreciemos retamente todas as coisas segundo o mesmo Espírito e gozemos da sua consolação. Por Cristo Senhor Nosso. Amém.</p> 
+
+</div> <br>
+
+<button class="accordion">Vossa proteção</button> 
+
+<div class="panel"> 
+
+<p>À vossa proteção recorremos, Santa Mãe de Deus. Não desprezeis as nossas súplicas em nossas necessidades, mas livrai-nos sempre de todos os perigos, ó Virgem gloriosa e bendita. Amém.</p> 
+
+</div> <br>
+
+<button class="accordion">Fica Senhor Comigo(Padre Pio)</button> 
+
+<div class="panel"> 
+
+ <p><b>Fica Senhor comigo</b>, pois preciso da tua presença para não te esquecer.<br>
+<b>Sabes quão facilmente posso te abandonar.</b><br>
+<b>Fica Senhor comigo</b>, porque sou fraco e preciso da tua força para não cair.<br>
+<b>Fica Senhor comigo</b>, porque és minha vida, e sem ti perco o fervor.<br>
+<b>Fica Senhor comigo</b>, porque és minha luz, e sem ti reina a escuridão.<br>
+<b>Fica Senhor comigo</b>, para me mostrar tua vontade.<br>
+<b>Fica Senhor comigo</b>, para que ouça tua voz e te siga.<br>
+<b>Fica Senhor comigo</b>, pois desejo amar-te e permanecer sempre em tua companhia.<br>
+<b>Fica Senhor comigo</b>, se queres que te seja fiel.<br>
+<b>Fica Senhor comigo</b>, porque, por mais pobre que seja minha alma, quero que se transforme num lugar de consolação para ti, um ninho de amor.<br>
+<b>Fica comigo, Jesus</b>, pois se faz tarde e o dia chega ao fim; a vida passa, e a morte, o julgamento e a eternidade se aproximam. Preciso de ti para renovar minhas energias e não parar no caminho. Está ficando tarde, a morte avança e eu tenho medo da escuridão, das tentações, da falta de fé, da cruz, das tristezas. Oh, quanto preciso de ti, meu Jesus, nesta noite de exílio.<br>
+<b>Fica comigo nesta noite, Jesus</b>, pois ao longo da vida, com todos os seus perigos, eu preciso de ti. Faze, Senhor, que te reconheça como te reconheceram teus discípulos ao partir do pão, a fim de que a Comunhão Eucarística seja a luz a dissipar a escuridão, a força a me sustentar, a única alegria do meu coração.<br>
+<b>Fica comigo, Senhor</b>, porque na hora da morte quero estar unido a ti, se não pela Comunhão, ao menos pela graça e pelo amor.<br>
+<b>Fica comigo, Jesus</b>. Não peço consolações divinas, porque não as mereço, mas apenas o presente da tua presença, ah, isso sim te suplico!<br>
+<b>Fica Senhor comigo</b>, pois é só a ti que procuro, teu amor, tua graça, tua vontade, teu coração, teu Espírito, porque te amo, e a única recompensa que te peço é poder amar-te sempre mais. Com este amor resoluto desejo amar-te de todo o coração enquanto estiver na terra, para continuar a te amar perfeitamente por toda a eternidade. Amém.<br>
+<b>São Padre Pio, rogai por nós!</b></p> 
+
+</div> 
+<br><br>
+
+
+<div class="novena-button" style="text-align:center; margin-top:15px;">
+  <a href="https://bibliotecacatolica.com.br/blog/categoria/novenas/" target="_blank" style="text-decoration:none;"> 
+    <button>Acesse as novenas (MBC)</button> 
+  </a>
+</div>
+     
+
+
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 - Devocional dos Milagres Eucarísticos</p>
+  </footer>
+
+  <script>
+  
+
+const searchInput = document.getElementById('searchInput');
+
+function applyFilters() {
+  const filterText = searchInput.value.toLowerCase();
+
+  // Filtrar artigos normais
+  document.querySelectorAll('.prayer').forEach(prayer => {
+    const title = prayer.querySelector('h3')?.textContent.toLowerCase() || '';
+    const text = prayer.querySelector('p')?.textContent.toLowerCase() || '';
+    const matches = title.includes(filterText) || text.includes(filterText);
+    prayer.style.display = matches ? '' : 'none';
+  });
+
+  // Filtrar botões e painéis do acordeão
+  document.querySelectorAll('.accordion').forEach(button => {
+    const panel = button.nextElementSibling;
+    const buttonText = button.textContent.toLowerCase();
+    const panelText = panel.textContent.toLowerCase();
+    const matches = buttonText.includes(filterText) || panelText.includes(filterText);
+
+    button.style.display = matches ? '' : 'none';
+    
+    // Painel visível apenas se estiver filtrado e não escondido
+    if (matches) {
+      panel.style.display = 'block';
+      // Ajusta altura se estiver aberto
+      if (panel.classList.contains('open')) {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+        panel.style.padding = "10px 15px";
+      }
+    } else {
+      panel.style.maxHeight = "0";
+      panel.style.padding = "0 15px";
+      panel.classList.remove('open');
+      panel.style.display = 'none';
+    }
+  });
+}
+
+searchInput.addEventListener('input', applyFilters);
+
+// Lógica do acordeão (permanece a mesma)
+const accordions = document.querySelectorAll('.accordion');
+
+accordions.forEach(button => {
+  button.addEventListener('click', () => {
+    const panel = button.nextElementSibling;
+
+    const isOpen = panel.classList.contains('open');
+
+    if (isOpen) {
+      // Fecha o painel
+      panel.classList.remove('open');
+      panel.style.maxHeight = "0";
+    } else {
+      // Abre o painel
+      panel.classList.add('open');
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  });
+});
+
+
+
+  // Fade de entrada ao carregar a página
+  window.addEventListener('load', () => {
+    const fade = document.getElementById('fade');
+    fade.classList.add('fade-out');
+    setTimeout(() => fade.remove(), 1200); // remove o div após o fade
+  });
+
+  // Fade de saída ao navegar para outra página
+  window.addEventListener('beforeunload', () => {
+    document.body.classList.add('fade-leave');
+  });
+
+
+
+
+  /* ==============================
+   Oração aberta atualmente
+============================== */
+function getOpenPrayer() {
+  const openPanel = document.querySelector('.panel.open');
+
+  if (!openPanel) {
+    alert('Abra uma oração antes de imprimir ou gerar o PDF.');
+    return null;
+  }
+
+  const title = openPanel.previousElementSibling.innerText;
+  const text = openPanel.innerText;
+
+  return { title, text };
+}
+
+/* ==============================
+   IMPRIMIR ORAÇÃO
+============================== */
+function printPrayer() {
+  const data = getOpenPrayer();
+  if (!data) return;
+
+  const printWindow = window.open('', '', 'width=800,height=600');
+
+  printWindow.document.write(`
+    <html>
+      <head>
+        <title>${data.title}</title>
+        <style>
+          body {
+            font-family: 'Merriweather', serif;
+            padding: 40px;
+            line-height: 1.6;
+            color: #3b1f1f;
+          }
+          h1 {
+            text-align: center;
+            color: #800000;
+          }
+          pre {
+            white-space: pre-wrap;
+            font-size: 16px;
+          }
+        </style>
+      </head>
+      <body>
+        <h1>${data.title}</h1>
+        <pre>${data.text}</pre>
+      </body>
+    </html>
+  `);
+
+  printWindow.document.close();
+  printWindow.focus();
+  printWindow.print();
+}
+
+/* ==============================
+   GERAR PDF
+============================== */
+function generatePDF() {
+  const data = getOpenPrayer();
+  if (!data) return;
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  const margin = 15;
+  const pageWidth = doc.internal.pageSize.width - margin * 2;
+
+  // Título
+  doc.setFont('Times', 'Bold');
+  doc.setFontSize(16);
+  doc.text(data.title, doc.internal.pageSize.width / 2, 20, { align: 'center' });
+
+  // Corpo
+  doc.setFont('Times', 'Normal');
+  doc.setFontSize(12);
+  const lines = doc.splitTextToSize(data.text, pageWidth);
+  doc.text(lines, margin, 35);
+
+  // Nome correto do arquivo
+  const fileName = data.title
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-zA-Z0-9 ]/g, "")
+    .trim()
+    .replace(/\s+/g, "_")
+    .toLowerCase();
+
+  doc.save(fileName + ".pdf");
+}
+
+
+
+  </script>
+
+</body>
+</html>

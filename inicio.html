@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta charset="UTF-8">
+  <title>Início | Milagres Eucarísticos</title>
+
+
+
+
+<style>
+
+/* === SEU CSS ORIGINAL === */
+
+/* Estilo padrão (desktop) */
+body {
+  font-size: 16px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  font-family: 'Merriweather', serif;
+  background-color: #fdf9f1;
+  color: #3b1f1f;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+header {
+  background-color: #800000;
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+nav {
+  background-color: #f8e8d0;
+  padding: 10px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav a {
+  color: #800000;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 13px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+nav a:hover,
+nav a.active,
+nav a:focus {
+  background-color: #800000;
+  color: white;
+  border-radius: 5px;
+  outline: none;
+}
+
+main {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+h1 {
+  color: white;
+}
+
+h2 {
+  color: #800000;
+}
+
+blockquote {
+  font-style: italic;
+  color: #5a3e3e;
+  border-left: 4px solid #d6b587;
+  background-color: #f9f4ec;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin: 20px 0;
+}
+
+footer {
+  background-color: #800000;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+
+/* Imagens */
+.img-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin: 30px 0;
+}
+
+.img-container img {
+  width: 200px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.carlo-frase {
+  font-size: 1.2em;
+  font-style: italic;
+  text-align: center;
+  margin-top: 20px;
+  color: #444;
+}
+
+/* Carrossel */
+.carrossel-container {
+  position: relative;
+  overflow: hidden;
+  flex: 2;
+  left: 82px;
+  height: 480px;
+  border-radius: 10px;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+  border-radius: 10px;
+}
+
+.slide img {
+  width: 85%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+}
+
+.active {
+  opacity: 1;
+  position: relative;
+}
+
+.legenda {
+  position: absolute;
+  bottom: 15px;
+  left: 10px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.botoes {
+  position: absolute;
+  top: 50%;
+  width: 85%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.botoes button {
+  background-color: rgba(0,0,0,0.5);
+  border: none;
+  color: white;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.botoes button:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Indicadores */
+.indicadores {
+  text-align: center;
+  position: relative;
+  top: 15px;
+}
+
+.dot {
+  height: 12px;
+  width: 12px;
+  margin: 0 4px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.active-dot {
+  background-color: #800000;
+}
+
+/* Botões */
+button {
+  background-color: #800000;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #970000;
+}
+
+/* Fade */
+#fade {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #fffbe6, #fffaf1, #ffffff);
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 1.2s ease;
+  pointer-events: none;
+}
+
+#fade.fade-out {
+  opacity: 0;
+}
+
+/* ================= RESPONSIVIDADE ================= */
+
+@media (max-width: 768px) {
+
+  /* CORREÇÃO CRÍTICA */
+  div {
+    left: 0 !important;
+  }
+
+  header {
+    padding: 25px 10px;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  main {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+
+  nav a {
+    display: inline-block;
+    margin: 5px;
+    padding: 8px 10px;
+    font-size: 0.85rem;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+
+  .img-container img {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  /* CARROSSEL MOBILE */
+  .carrossel-container {
+    height: auto;
+    min-height: 220px;
+  }
+
+  .slide {
+    position: relative;
+    height: auto;
+  }
+
+  .slide img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .botoes {
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .botoes button {
+    padding: 14px;
+    font-size: 20px;
+  }
+
+  .indicadores {
+    margin: 10px auto 0;
+    top: 0;
+  }
+}
+
+@media (max-width: 480px) {
+
+  h1 {
+    font-size: 1.1rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  button {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  .carrossel-container {
+    min-height: 180px;
+  }
+
+  .legenda {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+}
+
+/* Evitar overflow */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+  </style>
+</head>
+<body>
+
+  <div id="fade"></div>
+
+  <header>
+    <h1>Devocional dos Milagres Eucarísticos: inspirado em São Carlo Acutis</h1>
+  </header>
+
+  <nav>
+    <a href="inicio.html">Início</a>
+    <a href="milagres.html">Milagres</a>
+    <a href="biografia.html">São Carlo</a>
+    <a href="oracoes.html">Orações</a>
+    <a href="virgem maria.html">Virgem Maria</a>
+    <a href="contato.html">Contato</a>
+  </nav>
+
+  <main>
+    <section>
+      <h2>Bem-vindo ao Devocional dos Milagres Eucarísticos</h2>
+
+      <p>Este site tem como missão divulgar e fortalecer a fé na presença real de Jesus na Eucaristia através dos milagres eucarísticos reconhecidos pela Igreja. A inspiração para este projeto vem do Beato Carlo Acutis, um jovem apaixonado por Jesus no Santíssimo Sacramento, que dedicou sua breve vida à evangelização através da tecnologia.</p>
+      <blockquote> “A Eucaristia é a minha estrada para o céu.” — São Carlo Acutis </blockquote>
+    </section>
+
+<h2>O chamado de Carlo Acutis</h2>
+<p>São Carlo Acutis nasceu em 1991 e, mesmo vivendo apenas até os 15 anos, foi um exemplo radical de santidade para o nosso tempo. O chamado dele não veio por uma aparição ou uma voz extraordinária, mas por uma resposta diária ao amor de Deus, vivendo com profundidade aquilo que muitos jovens ignoram. Esse amor o impulsionava a participar da Missa todos os dias, rezar o terço, adorar Jesus no Santíssimo Sacramento e viver com pureza, caridade e humildade.
+
+Mas ele também era um jovem moderno: gostava de programação, jogos, internet, e usava essas coisas como meios de evangelização. Criou um site para catalogar os Milagres Eucarísticos no mundo, como uma verdadeira missão dada por Deus.
+
+O chamado de Carlo foi ser santo no ordinário, no cotidiano, usando o que ele tinha — seu tempo, seus dons, seus interesses — para glorificar a Deus e ajudar os outros a O conhecerem. Ele viveu o que a Igreja sempre ensinou: todos somos chamados à santidade.</p>
+
+<h2>Somos chamados a santidade</h2>
+
+
+<p>Ser santo não é um privilégio de poucos, é uma vocação para todos. Deus não escolhe só os mais fortes, mais inteligentes ou mais perfeitos — Ele chama cada um de nós, com nossas fraquezas, medos e limitações, para vivermos unidos a Ele.
+
+A santidade não é algo distante ou inalcançável. Ela não está só nos altares ou nas grandes histórias. A santidade está no coração de quem ama a Deus sinceramente, busca fazer o bem e permanece fiel mesmo nas pequenas coisas.
+
+<blockquote>“Sede santos, porque Eu sou santo.” (1 Pedro 1,16)</blockquote>
+
+<p>Essa é uma ordem e, ao mesmo tempo, um convite de amor. Jesus nos convida a nos parecermos com Ele, a sermos luz neste mundo escuro, a sermos sinal da Sua presença em cada gesto de amor, perdão, pureza, humildade e coragem. Santidade é viver em amizade com Deus, deixando-se transformar pelo Seu amor e pela graça do Espírito Santo. É permitir que Jesus viva em nós, moldando nosso coração, nossos pensamentos e nossas atitudes. A santidade não é ser perfeito no sentido humano, mas ser inteiramente entregue a Deus. Um coração santo é um coração que ama e se deixa amar por Deus.</p>
+<br><br>
+<center><h2>A santidade é possivel!</h2></center>
+
+<div class="carrossel-container">
+
+  <div class="slide active">
+    <a href='https://bibliotecacatolica.com.br/blog/devocao/chiara-corbella/?srsltid=AfmBOor9w2NsC4Uj2knyvSFANyc1S09zvmS133c_F1LJj2JXQI5cOpm2' >
+       <img src="chiara.jpg" alt="Imagem 1">
+    </a>
+    <div class="legenda">Serva de Deus Chiara Corbella Petrillo 
+
+    </div>
+  </div>
+
+  <div class="slide">
+    <a href='https://bibliotecacatolica.com.br/blog/devocao/guido-schaffer/?srsltid=AfmBOoqFmCKA3s50Udb2ohhGwa5QOOdYWr-kDmrn64HiHu0VHeZNqzLV' >
+      <img src="guido.jpeg" alt="Imagem 2">
+    </a>
+    <div class="legenda">Venerável Guido Schäffer
+
+    </div>
+  </div>
+
+  <div class="slide">
+    <a href='https://misericordia.com.br/conheca-a-historia-de-sandra-sabattini-mulher-e-noiva-que-foi-beatificada-nesse-final-de-semana/'>
+      <img src="sandra sabatini.jpg" alt="Imagem 3">
+    </a>  
+    <div class="legenda">Beata Sandra Sabattini</div>
+  </div>
+
+  <div class="slide">
+     <a href='https://bibliotecacatolica.com.br/blog/devocao/a-vida-de-santa-teresinha/?utm_source=google&utm_medium=cpc&utm_campaign=AQ+|+PMAX+|+COLD+|+Biblia&campaign_id=21847072998&adgroup_id=&ad_id=&gad_source=1&gad_campaignid=21847082376&gbraid=0AAAAADDeeUH1HkrpaU_by0vSw9J5Ijki4&gclid=CjwKCAjwisnGBhAXEiwA0zEOR2MiqqIMVxRvZfOBMP7SPt1qbfWWf76RYlP0ArVkzE1YP4bXLMW9gxoCJkAQAvD_BwE'>
+      <img src="santa_terezinha.jpg" alt="Imagem 4">
+     </a>
+    <div class="legenda">Santa Teresinha
+    </div>
+  </div>
+
+  <div class="slide">
+    <a href='https://comshalom.org/chiara-luce-badano-uma-vida-que-nos-ensina-a-dar-sentido-ao-sofrimento/' >
+    <img src="chiaraa.jpg" alt="Imagem 5">
+    </a>
+    <div class="legenda">Beata Chiara Badano</div>
+  </div>
+
+  <div class="slide">
+    <a href='https://bibliotecacatolica.com.br/blog/devocao/pier-giorgio-frassati/' >
+      <img src="jorge_frassati.png" alt="Imagem 6">
+    </a>  
+      <div class="legenda">São Pier Giorgio Frassati</div>
+    
+  </div>
+
+
+  <div class="slide">
+    <a href="https://bibliotecacatolica.com.br/blog/formacao/santa-ines/?utm_source=google&utm_medium=cpc&utm_campaign=AQ+|+PMAX+|+COLD+|+Biblia&campaign_id=21847072998&adgroup_id=&ad_id=&gad_source=1&gad_campaignid=21847082376&gbraid=0AAAAADDeeUF-v6nzSvE08zMXnxmDQTjSk&gclid=Cj0KCQjwjL3HBhCgARIsAPUg7a4GBoWdbgoZs2LpY1y-wtvKLQo92u0znqkWqMnxIiGMhwDkvEYWSx4aAiHYEALw_wcB" >
+      <img src="santa-ines.jpg" alt="Imagem 7">
+    </a>
+    <div class="legenda">Santa Inês </div>
+  </div>
+
+  <div class="slide">
+    <a href="https://www.cnbb.org.br/igreja-no-brasil-celebra-a-canonizacao-de-santa-dulce-dos-pobres-no-proximo-domingo-13/" >
+     <img src="santa_dulce.jpg" alt="Imagem 8">
+    </a> 
+    <div class="legenda">Santa Dulce dos Pobres </div>
+  </div>
+
+  <div class="slide">
+    <a href="https://padrepauloricardo.org/blog/o-menino-mexicano-que-queria-morrer-por-cristo-rei" >
+    <img src="sao_sanches.jpg" alt="Imagem 9">
+    </a>
+    <div class="legenda">São José Sánchez del Río </div>
+  </div>
+
+  
+    <div class="slide">
+      <a href="https://cruzterrasanta.com.br/historia-de-sao-tarcisio/163/102/" >
+    <img src="tarcisioo.jpg" alt="Imagem 10">
+      </a>
+    <div class="legenda">São Tarcisio </div>
+  </div>
+
+   <div class="slide">
+     <a href="https://santo.cancaonova.com/santo/santa-gema-galgani/">
+    <img src="santa-gema.jpg" alt="Imagem 11">
+     </a>
+    <div class="legenda">Santa Gemma Galgani </div>
+  </div>
+
+   <div class="slide">
+    <a href="https://bibliotecacatolica.com.br/blog/destaque/santa-maria-goretti/?srsltid=AfmBOoqZxefBPGZmlT8-GcNMGGv7Nw1CB5TGlWDSvdzF5YvV2iZcS1sW" >
+    <img src="Sta-Maria-Goretti.jpg" alt="Imagem 12">
+    </a>
+    <div class="legenda">Santa Maria Goretti </div>
+  </div>
+
+  <div class="slide">
+    <a href='https://bibliotecacatolica.com.br/blog/devocao/beata-isabel-cristina/' >
+    <img src="beata-isabel-cristina.png" alt="Imagem 13">
+    </a>
+    <div class="legenda">Beata Isabel Cristina </div>
+  </div>
+
+  <div class="slide">
+    <a href="https://www.matteofarina.com/pt/matteo-pt/perfil-biografico/#:~:text=Matteo%20Farina%20%2D%20Servo%20di%20Dio,v%C3%A1rios%20esportes%20e%20cultivava%20hobbies." >
+    <img src="matteo.jpeg" alt="Imagem 14">
+    </a>
+    <div class="legenda">Servo de Deus Matteo Farina </div>
+  </div>
+
+   <div class="slide">
+    <a href="https://comshalom.org/herois-da-fe-a-incrivel-historia-da-pequena-serva-de-deus-antonietta-meo/#google_vignette" >
+    <img src="meoo.jpg" alt="Imagem 15">
+   </a>
+    <div class="legenda">Venerável Antonietta Meo </div>
+  </div>
+
+  <div class="slide">
+    <a href="https://carmelitasdescalcos.com.br/santa-teresa-dos-andes/" >
+    <img src="teresa dos andes.jpg" alt="Imagem 16">
+    </a>
+    <div class="legenda">Santa Teresa dos Andes </div>
+  </div>
+
+   <div class="slide">
+    <a href="https://bibliotecacatolica.com.br/blog/devocao/sao-josemaria-escriva/?srsltid=AfmBOopyjA66cMGvK3FH0P1cywog-dJvylx2i-YzEs7ikmUYFX6jby_D" >
+    <img src="sao_sojeMariaa.jpg" alt="Imagem 17">
+    </a>
+    <div class="legenda">São Josemaría Escrivá</div>
+  </div>
+
+  <div class="slide">
+    <a href="https://cruzterrasanta.com.br/historia-de-santa-luzia/95/102/" >
+    <img src="Santa-Luzia.jpg" alt="Imagem 18">
+    </a>
+    <div class="legenda">Santa Luzia</div>
+  </div>
+
+   <div class="slide">
+    <a href="https://bibliotecacatolica.com.br/blog/formacao/santa-catarina-de-sena/?srsltid=AfmBOoqwT_c-wYC-TQ0kVtamEzl-uIrMkuVAF_0q_8PxDwHJvCLuB3EN">
+    <img src="catarina_sena.jpg" alt="Imagem 19">
+    </a>
+    <div class="legenda">Santa Catarina de Sena</div>
+  </div>
+
+  <div class="slide">
+    <a href="https://www.bethania.com.br/institucional/servo-de-deus-padre-leo-bth/">
+    <img src="padre leo.png" alt="Imagem 20">
+    </a>
+    <div class="legenda">Servo de Deus Padre Léo</div>
+  </div>
+
+  <div class="slide">
+      <a href="https://misericordia.com.br/veneravel-madre-maria-teresa-de-jesus-eucaristico-santidade-brasileira/" >
+    </a>
+    <div class="legenda">Venerável Madre Maria Teresa de Jesus Eucarístico</div>
+  </div>
+
+  <div class="slide">
+      <a href="https://www.causesanti.va/it/venerabili/luigia-sinapi.html" >
+    <img src="luigina sinapii.jpg" alt="Imagem 22">
+      </a>
+    <div class="legenda">Venerável Luigina Sinapi</div>
+  </div>
+
+  <div class="slide">
+    <img src="peter.jpg" alt="Imagem 23">
+    <div class="legenda">São Peter To Rot</div>
+  </div>
+
+   <div class="slide">
+    <a href="https://pt.sisterclare.com/pt/a-sua-vida" >
+    <img src="irma-clare.jpg" alt="Imagem 24">
+   </a>
+    <div class="legenda">Serva de Deus Irmã Clare Crockett</div>
+  </div>
+
+  <div class="slide">
+    <a href="https://blog.lumine.tv/a-vida-de-bartolo-longo/" >
+    <img src="bartolo longo.jpg" alt="Imagem 24">
+   </a>
+    <div class="legenda">São Bartolo Longo</div>
+  </div>
+
+
+
+  <div class="botoes">
+    <button onclick="mudarSlide(-1)">❮</button>
+    <button onclick="mudarSlide(1)">❯</button>
+  </div>
+</div>
+
+
+
+
+
+<div class="indicadores">
+  <span class="dot active-dot" onclick="irParaSlide(0)"></span>
+  <span class="dot" onclick="irParaSlide(1)"></span>
+  <span class="dot" onclick="irParaSlide(2)"></span>
+  <span class="dot" onclick="irParaSlide(3)"></span>
+  <span class="dot" onclick="irParaSlide(4)"></span>
+  <span class="dot" onclick="irParaSlide(5)"></span>
+  <span class="dot" onclick="irParaSlide(6)"></span>
+  <span class="dot" onclick="irParaSlide(7)"></span>
+  <span class="dot" onclick="irParaSlide(8)"></span>
+  <span class="dot" onclick="irParaSlide(9)"></span>
+  <span class="dot" onclick="irParaSlide(10)"></span>
+  <span class="dot" onclick="irParaSlide(11)"></span>
+  <span class="dot" onclick="irParaSlide(12)"></span>
+  <span class="dot" onclick="irParaSlide(13)"></span>
+  <span class="dot" onclick="irParaSlide(14)"></span>
+  <span class="dot" onclick="irParaSlide(15)"></span>
+  <span class="dot" onclick="irParaSlide(16)"></span>
+  <span class="dot" onclick="irParaSlide(17)"></span>
+  <span class="dot" onclick="irParaSlide(18)"></span>
+  <span class="dot" onclick="irParaSlide(19)"></span>
+  <span class="dot" onclick="irParaSlide(20)"></span>
+  <span class="dot" onclick="irParaSlide(21)"></span>
+  <span class="dot" onclick="irParaSlide(22)"></span>
+  <span class="dot" onclick="irParaSlide(23)"></span>
+  <span class="dot" onclick="irParaSlide(24)"></span>
+</div>
+<br><br><br><br>
+<h2>"Não tenham medo de ser santo!"</h2>
+
+<p>O mundo de hoje grita para você seguir modas, viver de aparência e buscar prazeres rápidos que passam como vento. Mas há uma voz mais forte, mais profunda e mais verdadeira, que ecoa no seu coração:
+<b>“Não tenham medo de ser santo!”</b>
+
+Ser santo não é ser perfeito de um dia para o outro. É ter coragem de dizer “sim” a Deus todos os dias, mesmo tropeçando, mesmo caindo, mas levantando sempre com a certeza de que vale a pena. Ser santo é nadar contra a corrente quando todos dizem que é impossível. É viver com propósito, sabendo que a vida não é só sobre aproveitar o momento, mas sobre construir algo eterno.
+A santidade não te tira nada de bom, pelo contrário: ela te dá tudo o que realmente importa. Ela te faz livre, porque quem vive em Deus não é escravo da opinião dos outros, nem das próprias fraquezas. Ser santo é a verdadeira rebeldia neste mundo sem direção.</p>
+
+São Carlo Acutis, um jovem como você, dizia:
+
+<blockquote>“Todos nascem como originais, mas muitos morrem como cópias.”</blockquote>
+
+<p>Você não nasceu para ser mais um. Você nasceu para ser luz. Deus não te chama para viver no “morno” ou no “tanto faz”. Ele te chama para <b>viver de verdade</b>, com intensidade e amor.
+
+E quando o medo bater, lembre-se: <b>a santidade é a maior aventura que você pode viver</b>. É a estrada mais curta para a felicidade que não acaba.</p>
+
+
+
+   <a href='https://santo.cancaonova.com/santos/#R' >
+  <button>
+    Conheça mais sobre os santos
+  </button>
+</a>
+<br><br>
+<a href='https://santo.cancaonova.com/'>
+  <button>
+    Santo do dia de hoje
+  </button>
+</a>
+
+
+
+  
+</main>
+  <footer>
+     <p>&copy; 2025 - Devocional dos Milagres Eucarísticos </p>
+  </footer>
+  
+
+  <script>
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function mostrarSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        if (i === index) {
+          slide.classList.add('active');
+        }
+      });
+    }
+
+    function mudarSlide(direcao) {
+      slideIndex += direcao;
+      if (slideIndex >= slides.length) slideIndex = 0;
+      if (slideIndex < 0) slideIndex = slides.length - 1;
+      mostrarSlide(slideIndex);
+    }
+
+    
+
+
+function mostrarSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.remove('active');
+    if (i === index) {
+      slide.classList.add('active');
+    }
+  });
+}
+
+
+
+
+
+const dots = document.querySelectorAll('.dot');
+
+function mostrarSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.remove('active');
+    if (i === index) {
+      slide.classList.add('active');
+    }
+  });
+
+  dots.forEach((dot, i) => {
+    dot.classList.remove('active-dot');
+    if (i === index) {
+      dot.classList.add('active-dot');
+    }
+  });
+}
+
+function irParaSlide(n) {
+  slideIndex = n;
+  mostrarSlide(slideIndex);
+}
+
+
+
+
+
+     // Luz entrando
+    window.addEventListener('load', () => {
+      const fade = document.getElementById('fade');
+      fade.classList.add('fade-out');
+      setTimeout(() => fade.remove(), 1200);
+    });
+
+    // Luz saindo
+    window.addEventListener('beforeunload', () => {
+      document.body.classList.add('fade-leave');
+      
+    });
+
+
+
+
+
+
+
+    app.listen(3000, '0.0.0.0', () => {
+  console.log('Servidor rodando');
+});
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,590 @@
+
+<style>
+
+/* Para telas de até 768px (tablets e celulares grandes) */
+@media (max-width: 768px) {
+  
+  nav a {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+  }
+
+  .video-container {
+    width: 90%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  img#carlo,
+  img#jovem,
+  img#eucaristia,
+  img#morte,
+  img#evangelizar,
+  img#beato,
+  .img-decorada {
+    width: 90%;
+    height: auto;
+  }
+
+  header {
+    padding: 30px 10px;
+  }
+
+  main {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  blockquote {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+
+  #btnTopo {
+    bottom: 70px;
+    right: 15px;
+    padding: 8px;
+    font-size: 16px;
+  }
+}
+
+/* Para telas muito pequenas, até 480px (celulares pequenos) */
+@media (max-width: 480px) {
+  nav {
+    padding: 5px;
+  }
+
+  nav a {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  .video-container {
+    width: 100%;
+  }
+
+  img#carlo,
+  img#jovem,
+  img#eucaristia,
+  img#morte,
+  img#evangelizar,
+  img#beato,
+  .img-decorada {
+    width: 100%;
+  }
+}
+
+
+    body {
+        font-family: 'Merriweather', serif;
+        background-color: #fdf9f1;
+        color: #3b1f1f;
+        margin: 0;
+        padding: 0;
+      }
+
+      p {
+  font-size: 1.05rem; /* aumenta o tamanho */
+  line-height: 1.4;   /* melhora o espaçamento entre linhas */
+}
+      
+      header {
+        background-color: #800000;
+        color: white;
+        text-align: center;
+        padding: 40px 20px;
+      }
+      
+     nav {
+    background-color: #f8e8d0;
+    padding: 10px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    position: sticky;  /* <- fixo enquanto rola a página */
+    top: 0;            /* <- distância do topo */
+    z-index: 1000;     /* <- garante que fique acima de outros elementos */
+}
+
+  /* Links do menu */
+  nav a {
+    color: #800000;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 13px;
+    border-radius: 3px;
+    transition: all 0.3s ease; /* Transição suave para todos os efeitos */
+  }
+
+  /* Efeito de hover */
+  nav a:hover {
+    background-color: #990202;
+    color: white;
+    border-radius: 5px;
+    
+  }
+
+  /* Efeito de foco (ao navegar com o teclado) */
+  nav a:focus {
+    outline: none;
+    background-color: #800000;
+    color: white;
+    
+  }
+
+  /* Ativar um link (página atual) */
+  nav a.active {
+    background-color: #800000;
+    color: white;
+    border-radius: 5px;
+  }
+      
+      main {
+        max-width: 1000px;
+        margin: auto;
+        padding: 20px;
+      }
+      
+      section {
+        margin-bottom: 40px;
+      }
+      
+      blockquote {
+        font-style: italic;
+  color: #5a3e3e;
+  border-left: 4px solid #c5a880;
+  background-color: #f9f4ec;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin: 20px 0;
+}
+
+      
+      footer {
+        background-color: #800000;
+        color: white;
+        text-align: center;
+        padding: 15px;
+      }
+
+    h1{
+        color: #ffffff;
+    }
+
+    h2{
+        color: #800000;
+    }
+
+
+    .img-biografia {
+  width: 35%;
+  height: auto;
+  border-radius: 7px;
+  display: block;
+  margin: 20px auto;
+}
+
+    img#carlo{
+      width: 30%;
+    height: 60%;
+    border-radius: 10px;
+    }
+
+
+    img#jovem{
+      width: 30%;
+      height: 60%;
+    border-radius: 10px;
+
+
+    }
+
+    img#eucaristia{
+      width: 32%;
+    height: 60%;
+    border-radius: 10px;
+
+
+    }
+
+    img#morte{
+      width: 35%;
+    height: 60%;
+    border-radius: 10px;
+
+
+    }
+
+    img#evangelizar{
+      width: 35%;
+      height: 60%;
+    border-radius: 10px;
+
+
+    }
+
+    
+    img#beato{
+      width: 35%;
+    height: 60%;
+    border-radius: 10px;
+
+
+
+   
+
+    }
+
+      img#santo{
+      width: 35%;
+    height: 65%;
+    border-radius: 10px;
+      }
+
+   .video-container {
+  position: relative;
+  width: 600px; /* largura fixa */
+  height: 391px; /* altura proporcional (16:9) */
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  margin: 20px auto;
+}
+
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+
+#btnTopo {
+  display: none;
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  z-index: 99;
+  font-size: 18px;
+  background-color: #800000;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+#btnTopo:hover {
+  background-color: #a00000;
+}
+
+
+
+
+ img {
+      width: 80%;
+      max-width: 500px;
+      height: auto;
+      border-radius: 10px;
+      border: 5px solid #fff;
+      outline: 2px solid #800000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+      filter: brightness(1) contrast(1) saturate(1);
+    }
+
+
+    /* Hover com zoom e aumento de brilho, contraste e saturação */
+    img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      filter: brightness(1.1) contrast(1.0) saturate(1.1);
+    }
+
+.img-decorada {
+      width: 80%;
+      max-width: 500px;
+      height: auto;
+      border-radius: 10px;
+      border: 5px solid #fff;
+      outline: 2px solid #800000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+
+
+    .img-decorada:hover {
+      transform: scale(1.02);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    }
+
+    
+
+
+    
+     #fade {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, #fffbe6, #fffaf1, #ffffff);
+    z-index: 9999;
+    opacity: 1;
+    pointer-events: none;
+    animation: fadeOut 1.2s ease forwards; /* duração do fade */
+  }
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* Fade de saída ao trocar de página */
+  body.fade-leave {
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+
+
+
+
+
+
+
+  .btn-youtube {
+    display: inline-block;
+    background-color: #800000;  /* vermelho vinho */
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s ease;  /* transição suave */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Efeito quando o mouse passa */
+  .btn-youtube:hover {
+    background-color: #a00000;  /* vermelho mais claro */
+    transform: scale(1.05);     /* aumenta um pouquinho */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    color: #fff5e1;             /* leve tom bege no texto */
+  }
+
+  /* Efeito ao clicar */
+  .btn-youtube:active {
+    transform: scale(0.97);
+  }
+    </style>
+    
+    
+    
+    
+    
+    
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+      <meta charset="UTF-8">
+      <title>Milagres Eucarísticos - Caminho de Santidade</title>
+      
+    </head>
+    <body>
+
+      <div id="fade"></div>
+
+      <header>
+        
+        <h1>Biografia de São Carlo Acutis</h1>
+        
+      </header>
+    
+      <nav>
+        <a href="inicio.html">Início</a>
+        <a href="milagres.html">Milagres</a>
+        <a href="biografia.html">São Carlo</a>
+        <a href="oracoes.html">Orações</a>
+        <a href="mapa.html">Mapa</a>
+        <a href="contato.html">Contato</a>
+      </nav>
+    
+      <main>
+        <section>
+          <center><h2>Conheça a história de São Carlo Acutis</h2></center>
+         <center> <img src="Carlo_Acutis.jpg" id="carlo" alt="Exemplo Carlo Acutis" class="img-decorada" loading="lazy"></center>
+         
+          <blockquote>“Todos nascem como originais, mas muitos morrem como cópias.” — São Carlo Acutis</blockquote>
+        <br><br><br>
+
+
+
+
+
+
+        <center><h2>Nascimento e Juventude</h2 id="nascimento"></center>
+            <p>Carlo Acutis nasceu em 3 de maio de 1991, em Londres, na Inglaterra, onde seus pais, Andrea Acutis e Antonia Salzano, trabalhavam. Ainda muito pequeno, a família se mudou para Milão, na Itália, onde Carlo cresceu. Seus pais não eram muito religiosos, mas Carlo, desde os primeiros anos de vida, demonstrava uma profunda inclinação espiritual.
+
+
+                Com apenas três anos, começou a demonstrar interesse por Jesus e pela Virgem Maria. Aos quatro, pedia para visitar igrejas e, ao passar diante de uma, queria entrar para “dizer olá a Jesus”.
+               
+                </p>
+            <center><img src="carlo_crianca.jpg" id="jovem" alt="Exemplo Carlo Acutis" class="img-decorada" loading="lazy"></center>
+        <br><br>
+
+
+
+
+        <center><h2>Amor pela Eucaristia</h2></center>
+            <p>Desde os sete anos, quando recebeu a Primeira Comunhão, Carlo passou a frequentar a Missa diariamente e a adorar o Santíssimo Sacramento sempre que podia. Ele dizia: </p>
+            <blockquote>“A Eucaristia é a minha autoestrada para o Céu.”</blockquote>
+            <p>Para Carlo, Jesus vivo na Hóstia consagrada era o centro da vida. Ele rezava o terço diariamente, lia a vida dos santos e amava ajudar os pobres.Ele colocava Jesus no centro de sua vida. Suas virtudes, como a caridade, paciência, bondade e alegria, brotavam da intimidade com Cristo Eucarístico.</p>   
+           
+            <center><img src="eucaristia.jpeg" id="eucaristia" alt="Exemplo Carlo Acutis" class="img-decorada" loading="lazy"></center>
+        <br><br>
+
+
+
+
+
+
+        <center><h2>O Jovem Evangelizador Digital</h2></center>
+            <p>Apaixonado por informática, Carlo usava seus dons para evangelizar pela internet. Ele aprendeu programação sozinho, dominava softwares e linguagens complexas e chegou a montar sites, editar vídeos e criar apresentações digitais.
+
+
+                Entre os 11 e 14 anos, desenvolveu um projeto para catalogar todos os milagres eucarísticos já reconhecidos pela Igreja. O site foi traduzido para diversos idiomas e virou uma exposição itinerante, que já percorreu mais de 17 mil paróquias no mundo.
+               
+                Carlo sabia que a internet podia ser um campo missionário:
+                <blockquote>“A internet pode ser usada para coisas boas, para espalhar a verdade. O problema é quando fazemos dela um ídolo.”</blockquote></p>
+                <center><img src="carlo-comp.jpg" id="evangelizar" alt="Exemplo Carlo Acutis" class="img-decorada" loading="lazy"></center>
+            <br><br>
+
+
+
+
+
+
+       <center><h2>Doença e Morte</h2></center>
+            <p>Em 2006, aos 15 anos,Carlo foi diagnosticado com uma leucemia do tipo M3, muito agressiva. Ele enfrentou a doença com serenidade e fé. Recusou tratamentos que causariam sofrimento excessivo e ofereceu tudo “pelos pecados dos jovens” e pela Igreja.
+
+
+                Disse à sua mãe:
+                <blockquote>“Eu morro feliz, porque não desperdicei nem um minuto da minha vida com coisas que não agradam a Deus.”</blockquote>
+                Faleceu em 12 de outubro de 2006, no hospital San Gerardo, em Monza, Itália. Foi sepultado em Assis</p>
+        <br><br>        
+            <center><img src="morte.jpg" id="morte" alt="Exemplo Carlo Acutis" class="img-decorada" loading="lazy"></center>
+        <br><br>
+
+
+
+
+        <center><h2> Beatificação e Milagre no Brasil</h2></center>
+            <p>Após sua morte, muitas graças e conversões começaram a ser atribuídas à sua intercessão. Em 2013, iniciou-se seu processo de beatificação.
+
+
+                O milagre reconhecido aconteceu em Campo Grande (MS), Brasil, em 2013, com um menino que sofria de uma doença congênita no pâncreas e foi curado completamente após rezar com uma relíquia de Carlo.
+               
+                No dia 10 de outubro de 2020, Carlo foi beatificado na Basílica de São Francisco de Assis, com seu corpo exposto incorrupto, vestido com calça jeans, tênis Nike e moletom. Um verdadeiro santo moderno.
+                </p>
+                <br><br>
+                <center><img src="beatificação.jpg" id="beato" alt="Exemplo Carlo Acutis" class="img-decorada" loading="lazy"></center>
+                <br><br>
+
+
+        <center><h2>São Carlo Acutis: O Santo Original</h2></center> 
+        <p>No dia 7 de setembro de 2025, Carlo Acutis foi canonizado oficialmente pela Igreja Católica, tornando-se o primeiro santo millennial da história. A cerimônia aconteceu na Praça de São Pedro, no Vaticano, e foi presidida pelo Papa Leão XIV.
+
+Carlo, que já era conhecido como o "padroeiro não oficial da internet", agora é reconhecido oficialmente como São Carlo Acutis, modelo de santidade para os jovens e para a era digital. Seu testemunho de fé, humildade, amor pela Eucaristia e uso da tecnologia para evangelizar conquistou o coração de milhões ao redor do mundo.</p>
+         <center><img src="sao_carloo.jpg" id="santo" alt="Exemplo Carlo Acutis" class="img-decorada" loading="lazy"></center>       
+        <br><br>       
+        <br><br>
+        
+      <section>
+      <center><h2 class="center">Documentário da MBC sobre Carlo Acutis</h2></center>
+ <center>
+  <a href="https://youtu.be/TU24y3I_H2U?si=am0IG-blc8FXY3rn" 
+     target="_blank" 
+     class="btn-youtube">
+    ▶️ Assistir no YouTube
+  </a>
+</center>
+
+      
+    </section>
+  </main>
+
+    <button id="btnTopo" title="Voltar ao topo">↑</button>
+
+      <footer>
+        <p>&copy; 2025 - Site Devocional dos Milagres Eucarísticos | Todos os direitos consagrados</p>
+      </footer>
+    </body>
+    </html>
+
+
+
+
+    <script>
+
+
+
+
+    const btnTopo = document.getElementById("btnTopo");
+
+
+window.addEventListener("scroll", () => {
+  let alturaPagina = document.documentElement.scrollHeight;
+  let posicaoAtual = window.scrollY + window.innerHeight;
+
+
+  // Se o usuário estiver a menos de 150px do final da página
+  if (posicaoAtual >= alturaPagina - 150) {
+    btnTopo.style.display = "block";
+  } else {
+    btnTopo.style.display = "none";
+  }
+});
+
+
+btnTopo.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
+
+
+
+
+  // Fade de entrada ao carregar a página
+  window.addEventListener('load', () => {
+    const fade = document.getElementById('fade');
+    fade.classList.add('fade-out');
+    setTimeout(() => fade.remove(), 1200); // remove o div após o fade
+  });
+
+  // Fade de saída ao navegar para outra página
+  window.addEventListener('beforeunload', () => {
+    document.body.classList.add('fade-leave');
+  });
+    </script>

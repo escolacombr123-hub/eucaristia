@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Milagres Eucarísticos</title>
+<style>
+body {
+  font-family: 'Merriweather', serif;
+  background-color: #fdf9f1;
+  color: #3b1f1f;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #800000;
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+}
+
+nav {
+  background-color: #f8e8d0;
+  padding: 10px;
+  text-align: center;
+}
+
+nav a {
+  color: #800000;
+  margin: 0 12px;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 3px;
+}
+
+nav a:hover, nav a.active {
+  background-color: #800000;
+  color: white;
+}
+
+main {
+  max-width: 1000px;
+  margin: auto;
+  padding: 15px 20px;
+}
+
+.search-box input[type="search"] {
+  width: 80%;
+  padding: 9px 12px;
+  font-size: 1rem;
+  border: 2px solid #a68a6e;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  margin-left: 6.8%;
+}
+
+button.accordion {
+  background-color: #800000;
+  color: white;
+  cursor: pointer;
+  padding: 12px 15px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  font-family: 'Cinzel', serif;
+  transition: background-color 0.3s ease;
+}
+
+button.accordion:hover {
+  background-color: #600000;
+}
+
+.panel {
+  background-color: #fff;
+  overflow: hidden;
+  border-radius: 6px;
+  box-shadow: 0 0 8px rgba(150, 120, 80, 0.15);
+  margin-bottom: 12px;
+  color: #3b1f1f;
+  font-family: 'Merriweather', serif;
+
+  max-height: 0;
+  opacity: 0;
+  padding: 0 15px;
+  transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
+}
+
+.panel.open {
+  opacity: 1;
+}
+
+footer {
+  background-color: #800000;
+  color: white;
+  text-align: center;
+  padding: 12px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Milagres Eucarísticos</h1>
+</header>
+
+<nav>
+  <a href="inicio.html">Início</a>
+  <a href="milagres.html" class="active">Milagres</a>
+  <a href="biografia.html">São Carlo</a>
+  <a href="oracoes.html">Orações</a>
+  <a href="mapa.html">Mapa</a>
+  <a href="contato.html">Contato</a>
+</nav>
+
+<main>
+  <section class="search-box">
+    <input type="search" id="searchInput" placeholder="Buscar milagre..." aria-label="Buscar milagre" />
+  </section>
+
+  <!-- Exemplos de milagres -->
+  <button class="accordion">Milagre de Lanciano</button>
+  <div class="panel">
+    <p>Durante a celebração da missa em Lanciano, Itália, o pão e o vinho transformaram-se em carne e sangue visíveis, comprovando a presença real de Cristo na Eucaristia.</p>
+  </div>
+
+  <button class="accordion">Milagre de Santarém</button>
+  <div class="panel">
+    <p>Em Santarém, Portugal, uma hóstia consagrada manteve-se intacta por anos, mesmo quando fora retirada do sacrário, demonstrando o poder do Santíssimo.</p>
+  </div>
+
+  <button class="accordion">Milagre de Bolsena-Orvieto</button>
+  <div class="panel">
+    <p>Durante a missa em Bolsena, Itália, o pão consagrado começou a sangrar, levando à instituição da Festa do Corpus Christi pelo Papa Urbano IV.</p>
+  </div>
+
+</main>
+
+<footer>
+  <p>&copy; 2025 - Devocional dos Milagres Eucarísticos</p>
+</footer>
+
+<script>
+const searchInput = document.getElementById('searchInput');
+
+function applyFilters() {
+  const filterText = searchInput.value.toLowerCase();
+
+  document.querySelectorAll('button.accordion').forEach(button => {
+    const panel = button.nextElementSibling;
+    const buttonText = button.textContent.toLowerCase();
+    const panelText = panel.textContent.toLowerCase();
+    const matches = buttonText.includes(filterText) || panelText.includes(filterText);
+
+    button.style.display = matches ? '' : 'none';
+    panel.style.display = 'none'; // sempre fechado ao filtrar
+    panel.classList.remove('open');
+  });
+}
+
+searchInput.addEventListener('input', applyFilters);
+
+// Lógica do acordeão
+const accordions = document.querySelectorAll('.accordion');
+
+accordions.forEach(button => {
+  button.addEventListener('click', () => {
+    const panel = button.nextElementSibling;
+    const isOpen = panel.classList.contains('open');
+
+    document.querySelectorAll('.panel.open').forEach(p => {
+      p.style.maxHeight = "0";
+      p.style.padding = "0 15px";
+      p.classList.remove('open');
+    });
+
+    if (!isOpen) {
+      panel.classList.add('open');
+      panel.style.maxHeight = panel.scrollHeight + "px";
+      panel.style.padding = "10px 15px";
+      panel.style.opacity = "1";
+    }
+  });
+});
+</script>
+
+</body>
+</html>
